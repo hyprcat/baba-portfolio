@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Baba Subhani Syed">
+  <!--
+    Favicon for babasubhanisyed.com.
+    Echoes the .hl marker treatment from DESIGN.md: a phrase carrying a lime
+    highlighter swipe under its lower half. Here the "phrase" is just the
+    monogram. Slight wobble in the lime path and slight asymmetry in the B
+    keep it hand-drawn rather than vector-perfect, matching the doodle rules
+    in DESIGN.md §8.
+  -->
+
+  <!-- Canvas. Rounded square so it sits well as an app icon on iOS / Android. -->
+  <rect width="64" height="64" rx="11" ry="11" fill="#FFFFFF"/>
+
+  <!-- Lime marker swipe. Sits behind the B from ~58% down (matches the
+       .hl gradient in global.css). Path is a wobbly quadrilateral, not a
+       rect, so the edges read as drawn with a marker rather than placed. -->
+  <path
+    d="M 7.4 35.8
+       C 21.7 34.6, 41.3 34.2, 57.6 35.1
+       C 57.9 41.6, 57.3 47.4, 56.8 52.4
+       C 39.1 52.9, 22.4 53.2, 7.1 52.6
+       C 6.7 47.3, 6.9 41.8, 7.4 35.8 Z"
+    fill="#D7F25C"/>
+
+  <!-- The B. Outer silhouette as a single filled path, with two holes
+       cut for the upper and lower bowls. Slight asymmetry in the bowl
+       widths so it reads marker-drawn. -->
+  <path
+    fill="#111111"
+    fill-rule="evenodd"
+    d="M 14.6 10.8
+       C 14.4 10.6, 14.7 10.3, 15.2 10.3
+       L 38.6 10.6
+       C 47.8 10.4, 52.7 14.7, 52.6 21.2
+       C 52.4 25.6, 50.1 28.8, 46.4 30.7
+       C 51.7 32.3, 54.7 36.1, 54.6 41.4
+       C 54.4 48.4, 49.3 53.4, 39.1 53.6
+       L 14.8 53.4
+       C 14.4 53.5, 14.2 53.2, 14.3 52.8
+       L 14.6 10.8 Z
+
+       M 22.7 16.8
+       L 22.6 27.7
+       C 22.6 28.0, 22.8 28.2, 23.1 28.2
+       L 36.7 28.3
+       C 41.6 28.3, 44.3 26.4, 44.4 22.6
+       C 44.5 18.8, 41.9 16.7, 36.6 16.7
+       L 23.0 16.6
+       C 22.8 16.6, 22.7 16.7, 22.7 16.8 Z
+
+       M 22.5 34.6
+       L 22.4 47.2
+       C 22.4 47.4, 22.6 47.6, 22.8 47.6
+       L 38.4 47.7
+       C 43.9 47.6, 46.7 45.4, 46.7 41.1
+       C 46.7 36.7, 43.7 34.4, 37.8 34.4
+       L 22.8 34.4
+       C 22.6 34.4, 22.5 34.5, 22.5 34.6 Z"/>
+</svg>

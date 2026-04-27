@@ -1,0 +1,40 @@
+MIT License
+
+Copyright (c) 2026 Baba Subhani Syed
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+NOTE ON SCOPE
+
+The MIT grant above covers the SOURCE CODE of this repository (Astro
+components, layouts, styles, build configuration, scripts, and design tokens).
+
+The following are NOT covered by the MIT grant and remain the property of
+Baba Subhani Syed:
+
+  - Personal prose under `content/` (case studies, biography, contact text)
+  - `public/cv.pdf` and any other personal documents
+  - The name "Baba Subhani Syed", any likeness, photograph, or headshot
+  - Trademarks, logos, or service marks (including the Midsphere design
+    system name where it appears as branding)
+
+If you use this repository as a template, replace the items above with your
+own before publishing.

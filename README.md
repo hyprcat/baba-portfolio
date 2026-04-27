@@ -1,73 +1,97 @@
 # Baba Subhani Syed — Portfolio
 
-Personal portfolio site for Baba Subhani Syed — ESSEC Grande École, Food Business Challenges Chair, marketing & product candidate. Built on Astro 5 + Tailwind v4 with the Midsphere design system, statically rendered, deploy-ready for DigitalOcean App Platform.
+A single-page personal portfolio for **Baba Subhani Syed** (ESSEC Grande École, Food Business Challenges Chair) — built for a recruiter to skim in two minutes on a phone. Astro 5 + Tailwind v4, statically rendered, **zero client-side JS**.
 
-## One-click deploy
-
+[![Built with Astro](https://img.shields.io/badge/Astro-5.x-BC52EE?logo=astro&logoColor=white)](https://astro.build)
+[![Tailwind v4](https://img.shields.io/badge/Tailwind-v4-38BDF8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](#license)
 [![Deploy to DigitalOcean](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/USER/baba-portifolio/tree/main)
 
-> Replace `USER` in the link above with your GitHub username **after** pushing this repo. The button uses [`.do/app.yaml`](./.do/app.yaml) for the build spec — `npm ci && npm run build`, output to `dist/`, free static-site tier.
+---
 
-## Develop locally
+## Contents
+
+- [Quick start](#quick-start)
+- [Tech stack](#tech-stack)
+- [Project structure](#project-structure)
+- [Content workflow](#content-workflow)
+- [Section map](#section-map)
+- [Deployment](#deployment)
+- [Use as a template](#use-as-a-template)
+- [Design philosophy](#design-philosophy)
+- [License](#license)
+- [Credits](#credits)
+
+---
+
+## Quick start
+
+Requires Node `>= 20`.
 
 ```bash
 npm install
 npm run dev          # http://localhost:4321
 npm run build        # static output to ./dist
 npm run preview      # serve the production build locally
+npm run check        # astro check (TypeScript + Astro diagnostics)
 ```
 
-Node >=20 required. `npm run build` is the gate — it fails on Astro / TS errors.
+`npm run build` is the gate — it fails on Astro/TypeScript errors. Treat green as the merge bar.
 
-## Stack
+---
 
-- **Astro 5.x** — `output: 'static'`, server-rendered at build time, zero client-side JS by default.
-- **Tailwind v4** — via `@tailwindcss/vite`. Tokens live in `src/styles/global.css` inside `@theme { ... }`.
-- **Fonts** — Google Sans Flex (body), Fuzzy Bubbles (highlighter), JetBrains Mono (mono). Loaded from Google Fonts CDN with `display=swap`; swap to self-hosted woff2 in `public/fonts/` before launch for the LCP win.
-- **Design system** — see [`DESIGN.md`](./DESIGN.md). Coding standards (perf budget, a11y, SEO/GEO) live in [`docs/CODING_STANDARDS.md`](./docs/CODING_STANDARDS.md).
+## Tech stack
 
-## Repo layout
+- **[Astro 5](https://astro.build)** — `output: 'static'`, server-rendered at build time, zero client-side JS, prefetch disabled, all CSS inlined into `<head>`.
+- **[Tailwind v4](https://tailwindcss.com)** via `@tailwindcss/vite`. Design tokens live in `src/styles/global.css` inside `@theme { ... }`.
+- **TypeScript 5** with `astro check` for diagnostics.
+- **Fonts** — Google Sans Flex (body), Fuzzy Bubbles (highlighter), JetBrains Mono (mono). Loaded from Google Fonts CDN with `display=swap`. For LCP-critical deploys, self-host woff2 files in `public/fonts/`.
+- **Design system** — see [`DESIGN.md`](./DESIGN.md). Performance, a11y, and SEO/GEO rules in [`docs/CODING_STANDARDS.md`](./docs/CODING_STANDARDS.md).
+
+---
+
+## Project structure
 
 ```
-content/                 # the prose source (markdown — read by humans, not imported)
+content/                      Editable prose source (markdown — see Content workflow)
 src/
   components/
-    global/              # Navbar, Footer, SEOHead
-    sections/            # Hero, About, CaseAllianz, ... — page-level chunks
-    ui/                  # Button, Card, Chip, doodles
-  layouts/               # BaseLayout, PageLayout
-  pages/                 # index.astro
-  styles/global.css      # design tokens + component utilities
-  utils/seo.ts           # JSON-LD schema generators
+    global/                   Navbar, Footer, SEOHead
+    sections/                 Hero, About, CaseAllianz, … — page-level chunks
+    ui/                       Button, Card, Chip, doodles
+  layouts/                    BaseLayout, PageLayout
+  pages/
+    index.astro               The single page
+    404.astro                 Catchall 404
+  styles/global.css           Design tokens + component utilities
+  utils/seo.ts                JSON-LD schema generators
 public/
-  fonts/                 # self-hosted woff2 (TODO before launch)
-  cv.pdf                 # downloadable CV (drop the latest tailored version here)
-.do/app.yaml             # DigitalOcean App Platform spec
-DESIGN.md                # design system spec
-docs/CODING_STANDARDS.md # perf, a11y, SEO/GEO rules
+  fonts/                      Self-hosted woff2 (optional — see Tech stack)
+  cv.pdf                      Downloadable CV
+.do/
+  app.yaml                    DO App Platform spec (for `doctl`)
+  deploy.template.yaml        DO App Platform spec (for the deploy button)
+DESIGN.md                     Visual + voice spec
+docs/CODING_STANDARDS.md      Engineering rules
 ```
 
-The markdown in `content/` is **the source of truth for copy** — when prose changes, update the file in `content/` first, then mirror it into the matching `src/components/sections/*.astro`. Keeps recruiters' eyes (the markdown) and the rendered site (Astro) on the same page.
+---
 
-## Audience
+## Content workflow
 
-This site is built to be skimmed by a French CPG / beauty / luxury / consulting recruiter in **2 minutes**. Every section answers a recruiter question:
+The markdown files in `content/` are **the source of truth for copy**. Editing flow:
 
-## Audience
+1. Edit the relevant `content/NN-*.md` file.
+2. Mirror the change into the matching `src/components/sections/*.astro`.
+3. `npm run build` to verify.
 
-This site is built to be skimmed by a French CPG / beauty / luxury / consulting recruiter in **2 minutes**. Every section answers a recruiter question:
-- Who is he? → hero
-- What does he want? → about / pivot
-- Can he do the work? → 3 case studies, all measurable
-- Does he know the food industry? → ESSEC Food Chair section
-- What tools? → skills matrix
-- How do I reach him? → contact
+This split keeps prose reviewable by non-developers (the markdown) while the rendered site (Astro) stays the deployable artifact.
 
-## Content files
+---
 
-The numbered files in `content/` are the editable prose source. Each one maps to a section component:
+## Section map
 
-| Markdown | Section component | Word count |
+| Markdown source | Section component | Word count |
 |---|---|---|
 | `content/00-meta.md` | `src/components/global/SEOHead.astro` (head, OG, JSON-LD) | — |
 | `content/01-hero.md` | `Hero.astro` | ~120 |
@@ -79,46 +103,75 @@ The numbered files in `content/` are the editable prose source. Each one maps to
 | `content/07-skills-tools.md` | `Toolkit.astro` | ~220 |
 | `content/08-contact.md` | `Contact.astro` | ~140 |
 | `content/09-cv-summary.md` | `CVSummary.astro` | ~280 |
-| `content/10-page-order-and-flow.md` | (informs `src/pages/index.astro` ordering) | — |
+| `content/10-page-order-and-flow.md` | informs `src/pages/index.astro` ordering | — |
 
-## Domain suggestions
+---
 
-- `babasubhanisyed.com` (matches LinkedIn handle)
-- `babasyed.com`
-- `basyed.fr` (French TLD signals Paris availability)
-- `babasubhani.com`
+## Deployment
 
-Pick whichever's free; consistency with the LinkedIn handle is the cleanest.
+The site builds to plain static files in `dist/`. It runs anywhere static — DO App Platform, Netlify, Vercel, Cloudflare Pages, GitHub Pages, S3+CloudFront, Nginx.
 
-## Brand direction (notes for whoever builds)
+### DigitalOcean App Platform (one-click)
 
-- **Type:** Inter or DM Sans for body, Space Grotesk or Söhne for headlines (matches `templates/cv-template.html` font choices in the career-ops repo for visual consistency between PDF CV and site).
-- **Palette:** off-white (`#FAFAF7`), charcoal (`#1A1A1A`), one accent — recommend **deep emerald** (`#0A4D3C`) or **dusty terracotta** (`#B8593E`). Avoid blue (every consultant has a blue site).
-- **Layout:** single-column, mobile-first, big margins, no sidebar. Recruiters scan on phones.
-- **No carousels.** Recruiters don't click through; everything visible inline.
-- **Photo:** one professional B&W headshot in the hero. Smiling, simple background, eye-level. If no photo yet, ship without — empty hero ≥ stock photo.
-- **Case studies:** STAR+R format on each (Situation, Task, Action, Result, Reflection). The result is the headline metric, big and centered.
-- **No clichés.** No "Passionate about innovation." No "Results-oriented." No "Synergies."
+Click the **Deploy to DigitalOcean** badge at the top of this README. The button reads [`.do/deploy.template.yaml`](./.do/deploy.template.yaml) and pre-fills:
 
-## What NOT to put on the site
+- **Region:** `fra` (Frankfurt) — closest EU region for European visitors.
+- **Build:** `npm ci && npm run build`, output `dist/`.
+- **Tier:** static site (free for the first 3 sites per DigitalOcean account).
+- **Catchall:** `404.html`.
 
-- Phone number (LinkedIn DM + email is enough — phone invites cold sales)
-- Salary expectations
-- Anything from the career-ops `reports/` folder (those are internal evaluations, not for public)
-- Photos of family / dog / hobbies (recruiter site, not personal blog)
-- Quote of the day or "favorite books" (unless tied to a case study)
+Before the button works on your fork, replace `USER` in two places:
 
-## What TO put
+1. The badge URL at the top of this README — `github.com/USER/baba-portifolio/tree/main`.
+2. `git.repo_clone_url` inside [`.do/deploy.template.yaml`](./.do/deploy.template.yaml).
 
-- One downloadable CV PDF (link to it from contact section)
-- LinkedIn link, prominently
-- ESSEC Food Chair explicit mention (it's the differentiator vs every other ESSEC MiM)
-- Two languages: most copy in English, with a small "FR" toggle linking to a French version if you have time. Otherwise English only is fine — recruiters in Paris food/CPG read English daily.
+### DigitalOcean App Platform (CLI)
 
-## Update cadence
+For non-button deploys, [`.do/app.yaml`](./.do/app.yaml) is the same spec without the `spec:` wrapper, suitable for:
 
-Once shipped, update only when:
-- He has a new role / case study (e.g., once the stage de fin d'études starts, add a "currently at X" line)
-- He gets a published case study or article (add to `proof_points` section)
+```bash
+doctl apps create --spec .do/app.yaml
+```
 
-Don't iterate on copy weekly — ship and forget for 6 months.
+### Other static hosts
+
+`npm run build` produces `dist/` — drop it on any static host. The `404.html` catchall is in the build output.
+
+---
+
+## Use as a template
+
+The code is permissively licensed, but **the prose, CV, and personal identity in `content/` and `public/cv.pdf` are not** — they're Baba's. To use this as a starting point for your own portfolio:
+
+1. **Replace all of `content/*.md`** with your own prose. The numbered ordering and section semantics are scaffolding you can keep or rearrange.
+2. **Update `src/components/sections/*.astro`** so each section reflects your new content.
+3. **Replace `public/cv.pdf`** with your own.
+4. **Edit `content/00-meta.md`** and `src/utils/seo.ts` for OG tags, JSON-LD, and canonical URL (`astro.config.mjs` → `site`).
+5. **Swap fonts and tokens** in `src/styles/global.css` if you want a different visual identity. [`DESIGN.md`](./DESIGN.md) explains the current system.
+6. **Update `.do/*.yaml`** if deploying to App Platform — change `name`, `region`, and `git.repo_clone_url`.
+
+---
+
+## Design philosophy
+
+The choices in this site are deliberate; preserving them helps if you fork it:
+
+- **One page, single column, mobile-first.** Recruiters scan on phones; sidebars and multi-page navigation cost more attention than they earn.
+- **No carousels, no hidden content.** Everything visible inline. Click-throughs lose readers.
+- **No client-side JS by default.** The page is HTML + inlined CSS. Anything interactive is opt-in per component.
+- **Hand-drawn personality, precise typography.** A serious sans carries the prose; doodles and a marker font carry the warmth. The two surfaces stay deliberately mismatched — see [`DESIGN.md`](./DESIGN.md) for the full rationale.
+- **Measurable case studies.** Each case follows STAR+R (Situation, Task, Action, Result, Reflection); the Result is the headline metric.
+
+---
+
+## License
+
+[MIT](./LICENSE) for the **code**. Personal content (prose under `content/`, `public/cv.pdf`, name, headshot) is **not** covered by the MIT grant — replace it before reusing the site.
+
+---
+
+## Credits
+
+- Built on [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com).
+- Visual system adapted from the **Midsphere** design system (see [`DESIGN.md`](./DESIGN.md)).
+- Typography: [Google Sans Flex](https://fonts.google.com/specimen/Google+Sans+Code), [Fuzzy Bubbles](https://fonts.google.com/specimen/Fuzzy+Bubbles), [JetBrains Mono](https://www.jetbrains.com/lp/mono/).
