@@ -17,7 +17,7 @@ Alternate options if you want a different angle:
 
 ## Hero CTAs (two buttons max)
 
-Primary: `Download CV (PDF)` → links to `/cv.pdf` (host the latest tailored CV; a generic version is fine to start)
+Primary: `Download CV (PDF)` → links to `/Baba-Subhani-Syed-CV.pdf` (host the latest tailored CV; a generic version is fine to start)
 Secondary: `Email me` → `mailto:babasubhani.syed@essec.edu?subject=Hello%20from%20your%20portfolio`
 
 (Don't use phone number on the site — invites cold sales calls.)

@@ -20,7 +20,7 @@ Single-line CTA + three reachout options. No long form. No "send me your job des
 
 1. **Email** → `mailto:babasubhani.syed@essec.edu?subject=Hello%20Baba`
 2. **LinkedIn** → `https://www.linkedin.com/in/babasubhanisyed`
-3. **Download CV (PDF)** → `/cv.pdf` (host the latest version on the site)
+3. **Download CV (PDF)** → `/Baba-Subhani-Syed-CV.pdf` (host the latest version on the site)
 
 Don't include phone number on the public site (cold-sales magnet). Recruiters get the email; if they want to call, they ask for the number.
 

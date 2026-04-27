@@ -3,6 +3,15 @@
 # For CLI deploys: `doctl apps create --spec .do/app.yaml`.
 # The "Deploy to DigitalOcean" button uses `.do/deploy.template.yaml` instead
 # (same content, but wrapped under a top-level `spec:` key).
+#
+# CACHE-CONTROL LIMITATION: DO App Platform hardcodes static-site responses to
+# `public, max-age=10, s-maxage=86400` and provides no app-spec field to
+# override it (open since 2022, confirmed unfixed by DO support May 2025:
+# ideas.digitalocean.com/app-platform/p/modify-caching-policy-for-static-pages).
+# The 10s browser cache is what trips Lighthouse's "Use efficient cache
+# lifetimes" audit on /fonts/*. The `public/_headers` file in this repo
+# encodes the correct rules in the Netlify / Cloudflare Pages convention so
+# migrating off DO is a one-host-flip change.
 name: baba-portfolio
 region: fra
 static_sites:

@@ -45,12 +45,25 @@ const {
     />
 
     {/* Self-hosted woff2 fonts. @font-face declarations live in global.css.
-        Preload only the body font (Google Sans Flex latin) — the LCP element
-        on this page is the hero headline, which uses it. The rest are
-        swap-loaded on demand. */}
+        Two preloads:
+        - Google Sans Flex latin: body + headline font, the dominant LCP font.
+        - Fuzzy Bubbles latin: the .hl marker font. Without preload it loads
+          *after* FCP, so when it swaps in it reshapes the .hl span inside the
+          H1 and pushes the LCP element (.hero-sub) down — Lighthouse then
+          re-anchors LCP to the post-swap paint, inflating element render
+          delay by ~4.5s on throttled mobile. Loading it in parallel keeps
+          the H1 stable through first paint.
+        Other faces (latin-ext subsets, JetBrains Mono) stay swap-loaded. */}
     <link
       rel="preload"
       href="/fonts/google-sans-flex.latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/fuzzy-bubbles-400.latin.woff2"
       as="font"
       type="font/woff2"
       crossorigin

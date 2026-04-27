@@ -5,6 +5,10 @@
 # https://docs.digitalocean.com/products/app-platform/how-to/add-deploy-do-button/
 #
 # For `doctl apps create --spec ...` use `.do/app.yaml` instead (no wrapper).
+#
+# Cache-control limitation: see the longer note in `.do/app.yaml`. DO hardcodes
+# `max-age=10` for static sites; `public/_headers` documents the right rules
+# for any host that honors them.
 spec:
   name: baba-portfolio
   region: fra

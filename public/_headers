@@ -1,0 +1,39 @@
+# Cache headers for static assets, in the Netlify / Cloudflare Pages / GitHub
+# Pages convention. Each block is "<path>" then indented "<Header>: <value>"
+# lines.
+#
+# IMPORTANT: DigitalOcean App Platform IGNORES this file. DO hardcodes static
+# site Cache-Control to `public, max-age=10, s-maxage=86400` for every asset,
+# which is why Lighthouse flags the fonts and trips the "Use efficient cache
+# lifetimes" audit even though we self-host them.
+#
+# Open feature request (no movement since May 2025):
+#   ideas.digitalocean.com/app-platform/p/modify-caching-policy-for-static-pages
+#
+# Keeping this file in version control is forward-compatible: if/when the
+# deploy moves to Cloudflare Pages, Netlify, or any host that honors `_headers`,
+# the rules below take effect immediately with no other change.
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon.ico
+  Cache-Control: public, max-age=2592000
+
+/favicon.svg
+  Cache-Control: public, max-age=2592000
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=2592000
+
+/icon-192.png
+  Cache-Control: public, max-age=2592000
+
+/icon-512.png
+  Cache-Control: public, max-age=2592000
+
+/Baba-Subhani-Syed-CV.pdf
+  Cache-Control: public, max-age=86400

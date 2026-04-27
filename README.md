@@ -67,7 +67,7 @@ src/
   utils/seo.ts                JSON-LD schema generators
 public/
   fonts/                      Self-hosted woff2 (optional — see Tech stack)
-  cv.pdf                      Downloadable CV
+  Baba-Subhani-Syed-CV.pdf    Downloadable CV
 .do/
   app.yaml                    DO App Platform spec (for `doctl`)
   deploy.template.yaml        DO App Platform spec (for the deploy button)
@@ -141,11 +141,11 @@ doctl apps create --spec .do/app.yaml
 
 ## Use as a template
 
-The code is permissively licensed, but **the prose, CV, and personal identity in `content/` and `public/cv.pdf` are not** — they're Baba's. To use this as a starting point for your own portfolio:
+The code is permissively licensed, but **the prose, CV, and personal identity in `content/` and `public/Baba-Subhani-Syed-CV.pdf` are not** — they're Baba's. To use this as a starting point for your own portfolio:
 
 1. **Replace all of `content/*.md`** with your own prose. The numbered ordering and section semantics are scaffolding you can keep or rearrange.
 2. **Update `src/components/sections/*.astro`** so each section reflects your new content.
-3. **Replace `public/cv.pdf`** with your own.
+3. **Replace `public/Baba-Subhani-Syed-CV.pdf`** with your own (and rename it to match — recruiters see the filename when they download).
 4. **Edit `content/00-meta.md`** and `src/utils/seo.ts` for OG tags, JSON-LD, and canonical URL (`astro.config.mjs` → `site`).
 5. **Swap fonts and tokens** in `src/styles/global.css` if you want a different visual identity. [`DESIGN.md`](./DESIGN.md) explains the current system.
 6. **Update `.do/*.yaml`** if deploying to App Platform — change `name`, `region`, and `git.repo_clone_url`.
@@ -166,7 +166,7 @@ The choices in this site are deliberate; preserving them helps if you fork it:
 
 ## License
 
-[MIT](./LICENSE) for the **code**. Personal content (prose under `content/`, `public/cv.pdf`, name, headshot) is **not** covered by the MIT grant — replace it before reusing the site.
+[MIT](./LICENSE) for the **code**. Personal content (prose under `content/`, `public/Baba-Subhani-Syed-CV.pdf`, name, headshot) is **not** covered by the MIT grant — replace it before reusing the site.
 
 ---
 
