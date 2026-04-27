@@ -5,7 +5,7 @@ A single-page personal portfolio for **Baba Subhani Syed** (ESSEC Grande École,
 [![Built with Astro](https://img.shields.io/badge/Astro-5.x-BC52EE?logo=astro&logoColor=white)](https://astro.build)
 [![Tailwind v4](https://img.shields.io/badge/Tailwind-v4-38BDF8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](#license)
-[![Deploy to DigitalOcean](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/USER/baba-portifolio/tree/main)
+[![Deploy to DigitalOcean](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/hyprcat/baba-portfolio/tree/main)
 
 ---
 
@@ -120,9 +120,9 @@ Click the **Deploy to DigitalOcean** badge at the top of this README. The button
 - **Tier:** static site (free for the first 3 sites per DigitalOcean account).
 - **Catchall:** `404.html`.
 
-Before the button works on your fork, replace `USER` in two places:
+If you fork this repo, replace `hyprcat` with your GitHub username in two places:
 
-1. The badge URL at the top of this README — `github.com/USER/baba-portifolio/tree/main`.
+1. The badge URL at the top of this README — `github.com/hyprcat/baba-portfolio/tree/main`.
 2. `git.repo_clone_url` inside [`.do/deploy.template.yaml`](./.do/deploy.template.yaml).
 
 ### DigitalOcean App Platform (CLI)
