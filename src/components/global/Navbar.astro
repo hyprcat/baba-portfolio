@@ -1,0 +1,126 @@
+---
+// Navbar.astro
+// Sticky top bar for Baba Subhani Syed's portfolio.
+// White background, hairline bottom border, contained at 1200px.
+// Self-sufficient: uses raw HTML with utility classes from src/styles/global.css.
+---
+
+<header class="navbar" role="banner">
+  <div class="container-x navbar-inner">
+    <a href="#top" class="navbar-brand" aria-label="Back to top, Baba Subhani Syed">
+      <span class="navbar-brand-full">Baba Subhani Syed</span>
+      <span class="navbar-brand-mono" aria-hidden="true">BS.</span>
+    </a>
+
+    <nav aria-label="Section navigation" class="navbar-links">
+      <a href="#about" aria-label="Jump to the About section">About</a>
+      <a href="#case-allianz" aria-label="Jump to the case studies">Work</a>
+      <a href="#food" aria-label="Jump to the ESSEC Food Business Challenges Chair section">ESSEC Chair</a>
+      <a href="#contact" aria-label="Jump to the Contact section">Contact</a>
+    </nav>
+
+    <div class="navbar-actions">
+      <span class="mono-tag navbar-langs" aria-label="Languages: English and French">EN · FR</span>
+      <a
+        class="btn btn-primary"
+        href="mailto:babasubhani.syed@essec.edu?subject=Hello%20Baba"
+        aria-label="Email Baba Subhani Syed"
+      >Email Baba</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--ms-bg-1, #ffffff);
+    border-bottom: 1px solid var(--ms-border-subtle);
+    backdrop-filter: saturate(140%) blur(8px);
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+  }
+
+  .navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding-block: 12px;
+  }
+
+  .navbar-brand {
+    font-family: var(--ms-font-mono);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    color: var(--ms-fg-1, inherit);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .navbar-brand:hover {
+    opacity: 0.8;
+  }
+
+  .navbar-brand-mono {
+    display: none;
+  }
+
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .navbar-links a {
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--ms-fg-1, inherit);
+    padding: 6px 2px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 120ms ease, opacity 120ms ease;
+  }
+
+  .navbar-links a:hover {
+    border-bottom-color: currentColor;
+  }
+
+  .navbar-links a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 768px) {
+    .navbar-links {
+      display: none;
+    }
+
+    .navbar-brand-full {
+      display: none;
+    }
+
+    .navbar-brand-mono {
+      display: inline;
+    }
+
+    .navbar-langs {
+      display: none;
+    }
+
+    .navbar-inner {
+      gap: 12px;
+    }
+  }
+</style>

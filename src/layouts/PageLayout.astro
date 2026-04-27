@@ -1,0 +1,32 @@
+---
+/**
+ * PageLayout.astro
+ *
+ * Standard content-page wrapper. Adds the global Navbar and Footer around the
+ * page slot, and exposes the focus target for the skip link.
+ *
+ * Use for content pages. The homepage may call BaseLayout directly and render
+ * Navbar + Footer itself if it needs finer-grained control over chrome.
+ */
+
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import Navbar from '~/components/global/Navbar.astro';
+import Footer from '~/components/global/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  lang?: string;
+  extraSchemas?: object[];
+}
+---
+<BaseLayout {...Astro.props}>
+  <Navbar />
+  <main id="main" tabindex="-1">
+    <slot />
+  </main>
+  <Footer />
+</BaseLayout>

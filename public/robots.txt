@@ -1,0 +1,25 @@
+# Robots policy for babasubhanisyed.com
+# Public portfolio. Allow standard search bots and the major LLM crawlers per
+# CODING_STANDARDS.md section 5 GEO. Brand discovery via answer engines is a
+# real channel for this site.
+
+User-agent: *
+Allow: /
+
+# Major LLM crawlers (allowlisted explicitly so the policy is legible).
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://babasubhanisyed.com/sitemap-index.xml

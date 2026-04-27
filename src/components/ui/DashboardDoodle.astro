@@ -1,0 +1,64 @@
+---
+/**
+ * DashboardDoodle.astro
+ *
+ * Hand-drawn metaphor for the Srikanth case study: a small dashboard frame
+ * holding 5 vertical bars of varying heights, with a tiny title-bar at the
+ * top. One bar is encircled by a loose hand-drawn lime oval — "the KPI
+ * that mattered." Reads as "12-KPI dashboard, one moved the number."
+ */
+
+interface Props {
+  size?: number;
+  float?: boolean;
+  class?: string;
+}
+
+const { size = 160, float = false, class: className } = Astro.props;
+
+const classes = [float ? 'doodle-float' : null, className]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<svg
+  aria-hidden="true"
+  viewBox="0 0 200 200"
+  width={size}
+  class={classes || undefined}
+  stroke="#111"
+  stroke-width="1.6"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  fill="none"
+>
+  {/* Dashboard frame. Slightly off-rectangular, closes a hair past start. */}
+  <path
+    d="M24.6 38.4
+       L 176.3 36.7
+       L 177.8 168.4
+       L 22.7 169.6
+       L 24.4 38.7"
+  />
+  {/* Title bar at the top of the frame — short horizontal line. */}
+  <path d="M34.7 54.3 L 92.6 53.8" />
+  {/* Tiny circular indicator on the title bar (window dot). */}
+  <circle cx="164.8" cy="53.6" r="2.1" fill="#111" stroke="none" />
+  {/* Baseline the bars sit on, slightly tilted. */}
+  <path d="M34.2 144.7 L 167.4 143.8" />
+  {/* Five bars of varied heights. Bar 3 is the highlighted one. */}
+  <path d="M44.8 144.6 L 44.6 118.3 L 58.7 118.6 L 58.4 144.7" />
+  <path d="M68.3 144.4 L 68.7 92.6 L 82.6 92.8 L 82.3 144.6" />
+  <path d="M92.4 144.3 L 92.7 73.8 L 106.8 74.2 L 106.4 144.6" />
+  <path d="M116.7 144.2 L 116.3 104.6 L 130.4 104.8 L 130.7 144.5" />
+  <path d="M140.6 144.4 L 140.8 86.7 L 154.7 86.4 L 154.3 144.6" />
+  {/* Hand-drawn lime oval circling the highlighted bar. */}
+  <path
+    d="M88.6 68.4
+       C 76.3 78.7, 78.4 142.6, 100.7 148.3
+       C 124.6 152.4, 117.8 73.6, 102.4 67.8
+       C 96.3 65.4, 91.7 66.3, 88.6 68.4 Z"
+    stroke="#D7F25C"
+    stroke-width="2.2"
+  />
+</svg>

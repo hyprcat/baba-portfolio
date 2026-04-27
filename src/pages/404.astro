@@ -1,0 +1,43 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+---
+
+<PageLayout
+  title="Page not found · Baba Subhani Syed"
+  description="That page is not on babasubhanisyed.com. Head back to the home page or send an email."
+  noindex={true}
+>
+  <section class="section container-x notfound">
+    <p class="eyebrow">404</p>
+    <h1 class="h-display">That page is not here.</h1>
+    <p class="notfound-body">
+      The link you followed points to something that does not live on this site. The home page has the case studies, the toolkit, and the contact details.
+    </p>
+    <div class="notfound-cta">
+      <a class="btn btn-primary" href="/">Back to the home page</a>
+      <a class="btn btn-secondary" href="mailto:babasubhani.syed@essec.edu?subject=Hello%20Baba">Email Baba</a>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .notfound {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-5);
+  }
+  .notfound-body {
+    max-width: 56ch;
+    color: var(--ms-fg-2);
+    font-size: 18px;
+    line-height: 1.55;
+  }
+  .notfound-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+  }
+</style>

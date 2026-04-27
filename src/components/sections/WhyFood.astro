@@ -1,0 +1,192 @@
+---
+/**
+ * WhyFood.astro
+ *
+ * The differentiator. Now position 3 in the page, right after About,
+ * so it carries the early pitch. Editorial single-column layout with
+ * one big pull-quote at the top and a body of named hooks (people,
+ * companies, partnerships) the recruiter will recognise.
+ *
+ * No FoodChairDoodle, no chip strip, no bullet list. One pull-quote,
+ * one .hl-soft, real <strong> for emphasis. All em-dashes and
+ * semicolons rewritten per DESIGN.md voice rules.
+ */
+
+import Button from '~/components/ui/Button.astro';
+import FoodChairDoodle from '~/components/ui/FoodChairDoodle.astro';
+
+interface Props {}
+---
+
+<section id="food" class="section food">
+  <div class="container-x food-container">
+    <div class="food-doodle" aria-hidden="true">
+      <FoodChairDoodle size={160} float={true} />
+    </div>
+    <p class="eyebrow food-eyebrow">categories</p>
+
+    <h2 id="food-h" class="h-section food-heading">
+      Where this applies.
+    </h2>
+
+    <blockquote id="food-quote" class="food-quote h-display-lg">
+      Brand and product roles in food, beauty, and luxury. The ESSEC <span class="hl-soft">Food Chair</span> is how I have spent the last two semesters learning who actually decides in the category.
+    </blockquote>
+
+    <div class="food-body">
+      <div class="food-row">
+        <svg class="food-glyph" aria-hidden="true" viewBox="0 0 32 32" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          {/* Linked partners — two overlapping circles */}
+          <circle cx="11.4" cy="16" r="5.7" />
+          <circle cx="20.6" cy="15.7" r="5.7" />
+        </svg>
+        <p class="food-para">
+          The Chair&apos;s industry partners include <strong>Bel Group</strong>, <strong>Casino Group</strong>, <strong>METRO France</strong>, and <strong>Le Cordon Bleu</strong>. In 2025-2026 that has meant a masterclass with <strong>Cécile Béliot-Zind</strong> (Bel CEO, ESSEC E97 alumna) and a freshly signed four-year partnership with Casino, which opens direct work with Monoprix, Franprix, and Naturalia.
+        </p>
+      </div>
+
+      <div class="food-row">
+        <svg class="food-glyph" aria-hidden="true" viewBox="0 0 32 32" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          {/* Key — circular handle and shaft with two notches (access) */}
+          <circle cx="9.4" cy="16" r="4.3" />
+          <path d="M13.6 16.3 L 26.4 16.3" />
+          <path d="M22.7 16.3 L 22.6 19.6" />
+          <path d="M26.3 16.3 L 26.4 20.4" />
+        </svg>
+        <p class="food-para">
+          The Chair is the proof I know how the category thinks. The work itself is something more practical: getting a quarterly cycle to actually finish, helping a brand director see which three of twenty markets are slipping this week, cleaning up a cross-functional handoff that has been broken since launch. That work looks the same at a food brand, a beauty house like <strong>L&apos;Oréal</strong>, a luxury group like <strong>LVMH Wines &amp; Spirits</strong>, or a premium spirits business like <strong>Pernod Ricard</strong>.
+        </p>
+      </div>
+
+      <div class="food-row">
+        <svg class="food-glyph" aria-hidden="true" viewBox="0 0 32 32" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          {/* Speech bubble — rounded rectangle with tail (conversation) */}
+          <path d="M 5.6 8.4 Q 5.6 5 9 5 L 23 5 Q 27 5 27 8.4 L 27 17.6 Q 27 21 23 21 L 13.4 21 L 9.6 25 L 11.6 21 Q 5.6 21 5.6 17.6 Z" />
+        </svg>
+        <p class="food-para">
+          If your team is hiring for brand, product, or insights in food, beauty, luxury, or premium consumer goods, the Chair is why I would not need a quarter of ramp-up on who is who in the category.
+        </p>
+      </div>
+    </div>
+
+    <p class="food-other-programs">
+      Other programmes this year include the Food Concept Creative Workshop with Le Cordon Bleu (February 2026), the Food for Travellers workshop, and Leaders in Food Transition keynotes from Nestlé France, AVRIL, and Ferrero.
+    </p>
+
+    <div class="food-cta">
+      <Button variant="ghost" href="https://foodchair.essec.edu" target="_blank" rel="noopener noreferrer">
+        ESSEC Food Chair →
+      </Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .food {
+    border-top: 1px solid var(--ms-border-subtle);
+  }
+
+  .food-container {
+    position: relative;
+  }
+
+  .food-doodle {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .food-doodle {
+      display: block;
+      position: absolute;
+      right: var(--space-7);
+      top: var(--space-6);
+    }
+  }
+
+  .food-eyebrow {
+    margin-bottom: var(--space-3);
+  }
+
+  .food-heading {
+    margin: 0 0 var(--space-7) 0;
+    color: var(--ms-fg-1);
+    max-width: 22ch;
+  }
+
+  .food-quote {
+    margin: 0 0 var(--space-8) 0;
+    padding: 0 0 0 var(--space-5);
+    border: 0;
+    border-left: 2px solid var(--ms-accent);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--ms-fg-1);
+    max-width: 28ch;
+    text-wrap: balance;
+  }
+
+  @media (min-width: 768px) {
+    .food-quote {
+      max-width: 32ch;
+    }
+  }
+
+  .food-body {
+    max-width: 64ch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .food-row {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+
+  .food-glyph {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    margin-top: 6px;
+    color: var(--ms-fg-1);
+  }
+
+  .food-para {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--ms-fg-2);
+    flex: 1;
+    min-width: 0;
+  }
+
+  .food-para strong {
+    color: var(--ms-fg-1);
+    font-weight: 500;
+  }
+
+  @media (max-width: 480px) {
+    .food-row {
+      gap: var(--space-3);
+    }
+    .food-glyph {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  .food-cta {
+    margin-top: var(--space-7);
+  }
+
+  .food-other-programs {
+    margin: var(--space-6) 0 0 0;
+    max-width: 64ch;
+    font-family: var(--ms-font-mono);
+    font-size: 12px;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    color: var(--ms-fg-3);
+  }
+</style>

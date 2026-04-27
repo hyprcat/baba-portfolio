@@ -1,0 +1,29 @@
+---
+/**
+ * Chip.astro
+ *
+ * Small pill primitive. Default variant just emits `.chip`. Other variants
+ * append `chip-{variant}`. Use `accent` for lime emphasis, `soft` for muted
+ * grey, `ok` / `warn` for in-product status (avoid status colors on
+ * marketing surfaces).
+ */
+
+interface Props {
+  variant?: 'default' | 'accent' | 'soft' | 'ok' | 'warn';
+  class?: string;
+}
+
+const { variant = 'default', class: className } = Astro.props;
+
+const classes = [
+  'chip',
+  variant !== 'default' ? `chip-${variant}` : null,
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<span class={classes}>
+  <slot />
+</span>

@@ -1,0 +1,194 @@
+---
+/**
+ * CaseAllianz.astro
+ *
+ * Case study 01. Allianz Trade, 40-country rollout. One big number,
+ * one moment, one pull-quote, one mono tag row, one GlobeDoodle.
+ * Source copy in content/03-case-allianz-40-countries.md.
+ */
+
+import GlobeDoodle from '~/components/ui/GlobeDoodle.astro';
+
+interface Props {}
+---
+
+<section id="case-allianz" class="section case">
+  <div class="container-x case-container">
+    <div class="case-doodle" aria-hidden="true">
+      <GlobeDoodle size={150} float={true} />
+    </div>
+    <p class="eyebrow case-eyebrow">case study 01 · sept to dec 2025 · junior project manager</p>
+
+    <h2 id="case-allianz-h" class="h-section case-heading">
+      40 countries, one launch playbook.
+    </h2>
+
+    <p class="case-meta">Allianz Trade, Paris. Junior project manager, central programme team.</p>
+
+    <div class="case-metric" id="case-allianz-metric">
+      <span class="case-metric-value">40</span>
+      <span class="case-metric-label">countries activated · zero deviations escalated late</span>
+    </div>
+
+    <div class="case-body">
+      <div class="case-row">
+        <svg class="case-glyph" aria-hidden="true" viewBox="0 0 32 32" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          {/* Calendar — rectangle with binder posts and day rules (yearly programme) */}
+          <path d="M5.6 8.6 L 26.4 8.4 L 26.6 26.6 L 5.4 26.4 Z" />
+          <path d="M10.6 5.4 L 10.6 10.7" />
+          <path d="M21.4 5.6 L 21.4 10.6" />
+          <path d="M5.6 13.6 L 26.4 13.4" />
+          <path d="M10.4 18.6 L 14.6 18.4" />
+          <path d="M18.6 18.4 L 22.7 18.6" />
+        </svg>
+        <p>
+          Allianz Trade runs a yearly programme to roll out new commercial offers across its commercial network. In Q4 2025, that programme covered 40 countries in Europe and MESA. I joined the central team in September. Country leads ran on different calendars, in six working languages, with very different reporting maturities.
+        </p>
+      </div>
+      <div class="case-row">
+        <svg class="case-glyph" aria-hidden="true" viewBox="0 0 32 32" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          {/* Slide deck — three offset rectangles (5-slide exec deck) */}
+          <path d="M4.4 12.6 L 24.4 12.4 L 24.6 26.6 L 4.6 26.4 Z" />
+          <path d="M7.4 9.4 L 27.6 9.3 L 27.4 23.6 L 24.6 23.6" />
+          <path d="M10.6 6.3 L 30.7 6.4 L 30.6 20.4 L 27.6 20.4" />
+        </svg>
+        <p>
+          The rule I built was the part that mattered: any country slipping a milestone showed up flagged a full week before central sponsors would have caught it on their own. Each Friday the COMEX walked into the meeting knowing which three of forty markets needed attention, and why. The work got reused for the Q1 2026 cycle after I left.
+        </p>
+      </div>
+    </div>
+
+    <blockquote id="case-allianz-quote" class="case-quote">
+      The COMEX does not need to read 40 rows. They need to see which 3 markets need attention this week.
+    </blockquote>
+
+    <p class="case-tags">5 regional clusters · 6 working languages · weekly COMEX cadence · 4 months</p>
+  </div>
+</section>
+
+<style>
+  .case {
+    border-top: 1px solid var(--ms-border-subtle);
+  }
+
+  .case-container {
+    position: relative;
+  }
+
+  .case-doodle {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .case-doodle {
+      display: block;
+      position: absolute;
+      right: var(--space-7);
+      top: var(--space-6);
+    }
+  }
+
+  .case-eyebrow {
+    margin-bottom: var(--space-3);
+  }
+
+  .case-heading {
+    margin: 0 0 var(--space-4) 0;
+    color: var(--ms-fg-1);
+    max-width: 22ch;
+  }
+
+  .case-meta {
+    margin: 0 0 var(--space-7) 0;
+    font-size: 15px;
+    color: var(--ms-fg-3);
+  }
+
+  .case-metric {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-7);
+  }
+
+  .case-metric-value {
+    font-family: var(--ms-font-sans);
+    font-size: clamp(80px, 12vw, 140px);
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    color: var(--ms-fg-1);
+  }
+
+  .case-metric-label {
+    font-family: var(--ms-font-mono);
+    font-size: 13px;
+    color: var(--ms-fg-2);
+    letter-spacing: 0.02em;
+  }
+
+  .case-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 64ch;
+    margin-bottom: var(--space-7);
+    color: var(--ms-fg-2);
+    font-size: 18px;
+    line-height: 1.65;
+  }
+
+  .case-body p {
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .case-row {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+
+  .case-glyph {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    margin-top: 6px;
+    color: var(--ms-fg-1);
+  }
+
+  @media (max-width: 480px) {
+    .case-row {
+      gap: var(--space-3);
+    }
+    .case-glyph {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  .case-quote {
+    margin: 0 0 var(--space-7) 0;
+    padding: var(--space-3) 0 var(--space-3) var(--space-5);
+    border: 0;
+    border-left: 2px solid var(--ms-accent);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(22px, 2.4vw, 32px);
+    line-height: 1.4;
+    color: var(--ms-fg-1);
+    max-width: 36ch;
+    text-wrap: balance;
+  }
+
+  .case-tags {
+    margin: 0;
+    max-width: 64ch;
+    font-family: var(--ms-font-mono);
+    font-size: 11px;
+    color: var(--ms-fg-3);
+    letter-spacing: 0.04em;
+    line-height: 1.7;
+  }
+</style>

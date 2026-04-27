@@ -1,0 +1,107 @@
+---
+/**
+ * HeroArtwork.astro
+ *
+ * The hero centerpiece. A focused hand-drawn still life: open notebook
+ * with a bar chart on one page, a plate on the other, a coffee cup
+ * beside it. The lime-circled bar is the only accent moment.
+ *
+ * Restraint over inclusion. Earlier composites tried to render Parisian
+ * rooftops, the Eiffel, a pen across the notebook, editorial arrows.
+ * Line-art SVG cannot carry that vocabulary at this scale. Stripped to
+ * elements the medium can render cleanly. Per DESIGN.md section 8:
+ * doodles must EXPLAIN, never decorate. No <text>, slight asymmetry,
+ * aria-hidden decorative.
+ */
+
+interface Props {
+  size?: number;
+  float?: boolean;
+  class?: string;
+}
+
+const { size = 360, float = false, class: className } = Astro.props;
+
+const classes = ['hero-artwork', float ? 'doodle-float' : null, className]
+  .filter(Boolean)
+  .join(' ');
+
+// Compute height from the 360:260 viewBox so the browser can reserve space
+// before the doodle paints. Without an explicit height, some engines fall
+// back to a default that triggers layout shift on the hero — the worst
+// possible CLS slot since it's above the fold.
+const computedHeight = Math.round((size * 260) / 360);
+---
+
+<svg
+  aria-hidden="true"
+  viewBox="0 0 360 260"
+  width={size}
+  height={computedHeight}
+  class={classes}
+  stroke="#111"
+  stroke-width="1.7"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  fill="none"
+>
+  {/* Open notebook on a wavy desk line. Tilted ~4 degrees counter-clockwise. */}
+  <g transform="rotate(-3.7 180 150)">
+    {/* Desk line. */}
+    <path d="M14.6 232.8 C 96.7 229.3, 213.4 230.7, 348.3 233.6" />
+
+    {/* Notebook left page. Slightly bowed outer edge for a hand-drawn feel. */}
+    <path d="M44.6 78.4 C 42.7 73.6, 47.4 70.8, 52.3 71.2 L 178.4 73.6 L 181.6 213.7 L 56.7 217.3 C 50.8 217.6, 47.3 213.4, 47.6 208.7 L 44.6 78.4 Z" />
+
+    {/* Notebook right page. */}
+    <path d="M178.4 73.6 L 304.3 71.4 C 309.7 71.7, 313.4 75.6, 312.3 80.4 L 308.7 209.6 C 308.4 214.3, 304.6 217.7, 299.3 217.4 L 181.6 213.7 L 178.4 73.6 Z" />
+
+    {/* Spine — a soft inward arc to suggest an open fold. */}
+    <path d="M178.4 73.6 C 175.7 113.4, 177.6 173.8, 181.6 213.7" />
+
+    {/* LEFT PAGE — bar chart. Title rule, baseline, four bars. */}
+    <path d="M64.7 96.3 L 124.4 95.6" />
+    <path d="M62.4 188.6 L 168.7 190.4" />
+    <path d="M76.3 188.4 L 76.7 158.7 L 96.4 159.2 L 96.6 188.6" />
+    <path d="M104.6 188.7 L 104.8 132.6 L 124.7 133.3 L 124.3 188.7" />
+    <path d="M132.6 188.4 L 132.8 110.7 L 152.7 111.4 L 152.3 188.6" />
+    <path d="M160.4 188.6 L 160.6 144.7 L 180.4 144.3 L 180.6 188.7" />
+
+    {/* The single lime moment. Hand-drawn loose oval circling the tallest bar. */}
+    <path
+      d="M127.6 102.4 C 116.3 109.7, 117.4 188.6, 137.7 196.3 C 158.8 199.4, 154.6 105.7, 138.4 100.6 C 132.7 98.4, 128.7 100.3, 127.6 102.4 Z"
+      stroke="#D7F25C"
+      stroke-width="2.1"
+    />
+
+    {/* RIGHT PAGE — plate, top-down view. Two soft elliptical rings + one tiny food anchor. */}
+    {/* Outer rim. */}
+    <ellipse cx="240" cy="142" rx="46.3" ry="44.7" />
+    {/* Inner well. */}
+    <ellipse cx="240" cy="142" rx="33.8" ry="32.6" />
+    {/* A tiny something on the plate (a piece of food). Small filled stroke-less dot. */}
+    <circle cx="240.4" cy="141.6" r="3.2" fill="#111" stroke="none" />
+  </g>
+
+  {/* Coffee cup beside the notebook on the desk. Cap, body, handle, two steam wisps. */}
+  <g>
+    {/* Cup top — flattish ellipse. */}
+    <path d="M298.4 168.6 C 298.6 165.4, 332.3 165.3, 332.6 168.7 C 332.4 172.3, 298.6 172.4, 298.4 168.6 Z" />
+    {/* Cup left side curves into base. */}
+    <path d="M299.6 169.6 C 300.7 188.4, 305.7 206.3, 315.4 208.6" />
+    {/* Cup right side. */}
+    <path d="M331.6 169.7 C 330.4 188.6, 326.6 206.3, 315.4 208.6" />
+    {/* Handle. */}
+    <path d="M331.4 178.4 C 343.3 180.7, 343.6 196.3, 330.6 198.7" />
+    {/* Steam — two short wisps. */}
+    <path d="M309.6 156.4 C 307.3 152.6, 311.7 148.4, 309.4 144.3" />
+    <path d="M321.7 155.6 C 319.4 151.7, 323.7 147.6, 321.4 143.3" />
+  </g>
+</svg>
+
+<style>
+  .hero-artwork {
+    height: auto;
+    max-width: 100%;
+  }
+</style>

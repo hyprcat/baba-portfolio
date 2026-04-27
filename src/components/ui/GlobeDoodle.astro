@@ -1,0 +1,61 @@
+---
+/**
+ * GlobeDoodle.astro
+ *
+ * Hand-drawn metaphor for the Allianz case study: a sketched globe with
+ * latitude and longitude lines plus clustered country-marker dots. The
+ * dots are intentionally clustered (Europe upper-left, MESA mid-right,
+ * a couple on the right edge) so it reads as "real countries, not
+ * decoration." One short connecting line implies coordination.
+ */
+
+interface Props {
+  size?: number;
+  float?: boolean;
+  class?: string;
+}
+
+const { size = 160, float = false, class: className } = Astro.props;
+
+const classes = [float ? 'doodle-float' : null, className]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<svg
+  aria-hidden="true"
+  viewBox="0 0 200 200"
+  width={size}
+  class={classes || undefined}
+  stroke="#111"
+  stroke-width="1.6"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  fill="none"
+>
+  {/* Globe outline. Closes 4° past start so it reads drawn, not vector. */}
+  <path
+    d="M100.4 28.6
+       C 138.7 28.4, 171.3 60.8, 171.6 99.7
+       C 171.8 138.4, 139.2 171.6, 100.7 171.4
+       C 62.3 171.2, 29.4 138.6, 29.7 99.4
+       C 30.1 61.2, 62.8 29.3, 102.6 28.7"
+  />
+  {/* Three latitude lines, each slightly off-axis and asymmetric. */}
+  <path d="M37.4 73.6 C 78.3 68.4, 122.7 67.8, 163.8 73.2" />
+  <path d="M30.2 100.3 L 171.4 100.6" />
+  <path d="M37.6 127.4 C 78.8 132.1, 123.2 132.6, 163.4 127.8" />
+  {/* Two longitude lines, hand-drawn ellipses. */}
+  <path d="M100.6 28.6 C 78.4 60.3, 78.7 138.7, 100.4 171.4" />
+  <path d="M100.6 28.6 C 122.8 60.7, 122.4 139.2, 100.4 171.4" />
+  {/* Country-marker dots. Clustered: Europe upper-left, MESA mid-right,
+      one in Africa, one in S. Asia. Not evenly spaced. */}
+  <circle cx="76.3" cy="62.4" r="2.6" fill="#111" stroke="none" />
+  <circle cx="84.7" cy="71.8" r="2.4" fill="#111" stroke="none" />
+  <circle cx="118.6" cy="68.3" r="2.5" fill="#111" stroke="none" />
+  <circle cx="132.4" cy="93.7" r="2.6" fill="#111" stroke="none" />
+  <circle cx="138.7" cy="108.4" r="2.4" fill="#111" stroke="none" />
+  <circle cx="108.3" cy="124.6" r="2.5" fill="#111" stroke="none" />
+  {/* One short connecting line, two of the markers — "coordination." */}
+  <path d="M84.7 71.8 C 102.6 64.3, 116.4 64.8, 118.6 68.3" />
+</svg>

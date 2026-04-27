@@ -1,0 +1,26 @@
+---
+import PageLayout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/sections/Hero.astro';
+import About from '~/components/sections/About.astro';
+import WhyFood from '~/components/sections/WhyFood.astro';
+import CaseAllianz from '~/components/sections/CaseAllianz.astro';
+import CaseSrikanth from '~/components/sections/CaseSrikanth.astro';
+import CaseImpact from '~/components/sections/CaseImpact.astro';
+import Contact from '~/components/sections/Contact.astro';
+import { websiteSchema } from '~/utils/seo';
+---
+
+<PageLayout
+  title="Baba Subhani Syed · Marketing &amp; Product, Paris"
+  description="ESSEC Grande École student and Food Business Challenges Chair member. Available July 2026 for stage de fin d'études or first CDI in food, beauty, and luxury brands."
+  canonical="/"
+  extraSchemas={[websiteSchema()]}
+>
+  <Hero />
+  <About />
+  <WhyFood />
+  <CaseAllianz />
+  <CaseSrikanth />
+  <CaseImpact />
+  <Contact />
+</PageLayout>

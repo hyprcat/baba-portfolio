@@ -1,0 +1,71 @@
+---
+/**
+ * WorkshopDoodle.astro
+ *
+ * Hand-drawn metaphor for the Impact case study: a tilted sheet of paper
+ * with squiggly notes, a lightbulb above it with shine lines radiating
+ * outward, and a small pen beside it. Reads as "brand workshop / the
+ * moment an idea lands."
+ */
+
+interface Props {
+  size?: number;
+  float?: boolean;
+  class?: string;
+}
+
+const { size = 160, float = false, class: className } = Astro.props;
+
+const classes = [float ? 'doodle-float' : null, className]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<svg
+  aria-hidden="true"
+  viewBox="0 0 200 200"
+  width={size}
+  class={classes || undefined}
+  stroke="#111"
+  stroke-width="1.6"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  fill="none"
+>
+  {/* Sheet of paper, tilted ~10°. Four edges, slight asymmetry. */}
+  <path
+    d="M38.4 118.6
+       L 132.7 106.3
+       L 142.8 178.4
+       L 47.6 188.7
+       L 38.2 118.4 Z"
+  />
+  {/* Squiggly note lines on the paper. Three short scribbles. */}
+  <path d="M52.6 134.8 C 64.3 132.4, 78.7 131.6, 92.4 129.8 L 118.6 127.3" />
+  <path d="M54.8 148.7 C 68.4 146.3, 84.7 144.8, 102.6 143.2" />
+  <path d="M57.3 162.4 C 71.6 160.8, 86.4 159.3, 98.7 157.8" />
+  {/* Lightbulb above the paper. Round bulb (slightly egg-shaped). */}
+  <path
+    d="M92.4 28.6
+       C 72.3 30.8, 63.7 56.4, 78.6 71.3
+       C 84.4 76.8, 86.2 82.6, 86.7 88.4
+       L 108.6 86.7
+       C 108.3 80.8, 109.7 74.6, 114.8 68.4
+       C 127.6 52.3, 117.4 27.4, 96.3 28.4
+       C 94.8 28.4, 93.6 28.5, 92.4 28.6 Z"
+  />
+  {/* Bulb base — two short horizontal lines. */}
+  <path d="M88.4 92.6 L 107.8 91.4" />
+  <path d="M89.7 97.8 L 106.4 96.7" />
+  {/* Shine lines radiating outward. Five short strokes, one longer. */}
+  <path d="M62.4 38.7 L 52.3 34.6" />
+  <path d="M54.6 58.4 L 42.7 58.8" />
+  <path d="M132.7 36.4 L 144.6 30.8" />
+  <path d="M138.4 56.7 L 152.3 56.4" />
+  <path d="M97.6 14.3 L 96.8 4.6" />
+  {/* Pen beside the paper. Long thin angled body + small triangular tip. */}
+  <path d="M156.4 122.6 L 184.7 152.3" />
+  <path d="M161.8 117.4 L 189.6 147.6" />
+  <path d="M156.4 122.6 L 161.8 117.4" />
+  <path d="M184.7 152.3 L 192.4 158.6 L 189.6 147.6 Z" fill="#111" stroke="none" />
+</svg>

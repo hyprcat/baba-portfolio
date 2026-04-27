@@ -1,0 +1,40 @@
+---
+/**
+ * ScrollDownArrow.astro
+ *
+ * Hero scroll cue. A sketchy down-arrow with two side ticks for hand-drawn
+ * texture. Decorative, with `aria-hidden="true"`. Floats by default. Pass
+ * `float={false}` to lock it.
+ */
+
+interface Props {
+  float?: boolean;
+  class?: string;
+}
+
+const { float = true, class: className } = Astro.props;
+
+const classes = [float ? 'doodle-float' : null, className]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<svg
+  aria-hidden="true"
+  viewBox="0 0 36 78"
+  class={classes || undefined}
+  stroke="#111"
+  stroke-width="1.6"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  fill="none"
+>
+  {/* Shaft. Wobbles a touch off vertical so it reads inked, not drafted. */}
+  <path d="M18.3 4.7 C 17.6 18.4, 18.9 32.1, 17.8 46.2 C 17.1 53.7, 18.4 58.9, 18.0 63.3" />
+  {/* Arrowhead. Asymmetric legs. */}
+  <path d="M18.0 63.3 L 7.4 52.8" />
+  <path d="M18.0 63.3 L 28.7 53.4" />
+  {/* Two side ticks for hand-drawn texture. */}
+  <path d="M6.8 28.4 L 10.2 31.1" />
+  <path d="M29.1 39.6 L 25.4 42.3" />
+</svg>

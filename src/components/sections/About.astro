@@ -1,0 +1,196 @@
+---
+/**
+ * About.astro
+ *
+ * Personal statement, single column. Pivot story with hard credentials
+ * baked in (1st of 300 undergrad, GPA 17/20 at ESSEC, Vasavya NGO).
+ * One pull-quote, one .hl lime moment, one PivotDoodle on desktop.
+ */
+
+import PivotDoodle from '~/components/ui/PivotDoodle.astro';
+
+interface Props {}
+---
+
+<section id="about" class="section about">
+  <div class="container-x about-container">
+    <div class="about-doodle" aria-hidden="true">
+      <PivotDoodle size={140} float={true} />
+    </div>
+    <p class="eyebrow about-eyebrow">about</p>
+    <h2 id="about-h" class="h-section about-heading">
+      What I can do for your team.
+    </h2>
+
+    <div class="about-body">
+      <div class="about-row">
+        <svg class="about-glyph" aria-hidden="true" viewBox="0 0 32 32" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          {/* Mini bar chart — operations / dashboards */}
+          <path d="M4.3 27.6 L 28.4 27.6" />
+          <path d="M7.4 27.6 L 7.6 21.3 L 12.7 21.4 L 12.6 27.6" />
+          <path d="M14.6 27.6 L 14.8 14.7 L 19.7 14.8 L 19.6 27.6" />
+          <path d="M21.6 27.6 L 21.8 9.3 L 26.7 9.4 L 26.6 27.6" />
+        </svg>
+        <p class="about-para">
+          My job at <strong>Srikanth Engineering Works</strong> in Hyderabad was to keep the senior team from being blindsided. They were running a 300-person agri-tech across five business units, reading five separate weekly reports that arrived on five different days, and finding out about problems after those problems had already cost something. I replaced that with one Monday review the team actually finished in 45 minutes. Bottlenecks fell 47% in a quarter, delivery cycles compressed 28% over the next year. I had ranked <strong>first of 300</strong> in my undergraduate cohort before I joined.
+        </p>
+      </div>
+
+      <div class="about-row">
+        <svg class="about-glyph" aria-hidden="true" viewBox="0 0 32 32" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          {/* Globe — multi-market work */}
+          <ellipse cx="16" cy="16" rx="11.7" ry="11.4" />
+          <path d="M4.6 15.8 L 27.4 16.2" />
+          <ellipse cx="16" cy="16" rx="5.6" ry="11.4" />
+          <circle cx="11.4" cy="9.7" r="0.9" fill="#111" stroke="none" />
+          <circle cx="20.6" cy="13.4" r="0.9" fill="#111" stroke="none" />
+          <circle cx="22.3" cy="20.7" r="0.9" fill="#111" stroke="none" />
+        </svg>
+        <p class="about-para">
+          The same instinct took me to <strong>Allianz Trade in Paris</strong>, on the central team for a 40-country rollout across Europe and MESA. Six working languages, five regional clusters, all reporting in on different cadences. The job each week was to make sure the COMEX walked into Friday already knowing which three of forty markets needed attention. The work I left behind got reused for the next cycle.
+        </p>
+      </div>
+
+      <blockquote id="about-quote" class="about-quote h-display-lg">
+        Most senior teams have too many numbers and not enough decisions. My job is to fix that.
+      </blockquote>
+
+      <div class="about-row">
+        <svg class="about-glyph" aria-hidden="true" viewBox="0 0 32 32" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          {/* Pivot arrow — career change */}
+          <path d="M5.4 23.6 C 5.6 13.4, 14.7 7.6, 26.4 11.3" />
+          <path d="M22.7 7.4 L 26.4 11.3 L 22.6 15.7" />
+        </svg>
+        <p class="about-para">
+          I am at <strong>ESSEC Grande École</strong> now, GPA <strong>17/20</strong>, in the <span class="hl">Food Business Challenges Chair</span>. The work translates into consumer brands without much friction. A brand director who needs to know which three markets to push on this week is the same problem as a programme sponsor at Allianz, in a different vocabulary. Food, beauty, luxury, and premium consumer goods all run on it.
+        </p>
+      </div>
+
+      <div class="about-row about-row-aside">
+        <svg class="about-glyph" aria-hidden="true" viewBox="0 0 32 32" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          {/* Heart — community work */}
+          <path d="M16 26.4 C 8.3 20.6, 4.7 14.3, 7.8 10.4 C 11.6 6.3, 15.7 9.4, 16 12.6 C 16.3 9.4, 20.6 6.3, 24.4 10.4 C 27.4 14.3, 23.7 20.6, 16 26.4 Z" />
+        </svg>
+        <p class="about-para about-para-aside-body">
+          Outside the day job: designed and ran a financial-literacy programme for 150 beneficiaries at the <strong>Vasavya Mahila Mandali NGO</strong>. Seventy percent stayed engaged long-term.
+        </p>
+      </div>
+    </div>
+
+    <div class="about-skills" aria-label="What I do well">
+      cutting noise from senior reporting · multi-market coordination · cross-functional handoffs · executive synthesis · English C2 · French B2
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    border-top: 1px solid var(--ms-border-subtle);
+  }
+
+  .about-container {
+    position: relative;
+  }
+
+  .about-doodle {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .about-doodle {
+      display: block;
+      position: absolute;
+      right: var(--space-7);
+      top: var(--space-6);
+    }
+  }
+
+  .about-eyebrow {
+    margin-bottom: var(--space-3);
+  }
+
+  .about-heading {
+    margin: 0 0 var(--space-7) 0;
+    color: var(--ms-fg-1);
+    max-width: 22ch;
+  }
+
+  .about-body {
+    max-width: 64ch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .about-row {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+
+  .about-glyph {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    margin-top: 6px;
+    color: var(--ms-fg-1);
+  }
+
+  .about-row-aside {
+    margin-top: var(--space-3);
+    border-top: 1px dashed var(--ms-border-subtle);
+    padding-top: var(--space-4);
+  }
+
+  .about-para {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--ms-fg-2);
+    flex: 1;
+    min-width: 0;
+  }
+
+  .about-para strong {
+    color: var(--ms-fg-1);
+    font-weight: 500;
+  }
+
+  .about-para-aside-body {
+    font-size: 16px;
+    color: var(--ms-fg-3);
+  }
+
+  @media (max-width: 480px) {
+    .about-row {
+      gap: var(--space-3);
+    }
+    .about-glyph {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  .about-quote {
+    margin: var(--space-3) 0;
+    padding: 0 0 0 var(--space-5);
+    border: 0;
+    border-left: 2px solid var(--ms-accent);
+    font-style: italic;
+    font-weight: 500;
+    color: var(--ms-fg-1);
+    max-width: 28ch;
+    text-wrap: balance;
+  }
+
+  .about-skills {
+    margin-top: var(--space-8);
+    max-width: 64ch;
+    font-family: var(--ms-font-mono);
+    font-size: 12px;
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+    text-transform: lowercase;
+    color: var(--ms-fg-3);
+  }
+</style>

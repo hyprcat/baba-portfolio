@@ -1,0 +1,59 @@
+---
+/**
+ * Button.astro
+ *
+ * Anchor-or-button primitive that maps a `variant` prop onto the `.btn-*`
+ * classes defined in `src/styles/global.css`. When `href` is provided the
+ * component renders an `<a>`, otherwise a `<button>` with `type` defaulting
+ * to `'button'`.
+ *
+ * Caret/arrow glyphs come through `<slot />`. Do not auto-add an arrow.
+ */
+
+interface Props {
+  variant?: 'primary' | 'secondary' | 'accent' | 'inverse' | 'ghost' | 'ghost-on-dark';
+  href?: string;
+  type?: 'button' | 'submit';
+  target?: '_blank' | '_self';
+  rel?: string;
+  ariaLabel?: string;
+  download?: boolean | string;
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  href,
+  type = 'button',
+  target,
+  rel,
+  ariaLabel,
+  download,
+  class: className,
+} = Astro.props;
+
+const classes = ['btn', `btn-${variant}`, className].filter(Boolean).join(' ');
+
+// Default rel for new-tab anchors. Caller can override by passing `rel`.
+const resolvedRel =
+  href && target === '_blank' ? (rel ?? 'noopener noreferrer') : rel;
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class={classes}
+      target={target}
+      rel={resolvedRel}
+      aria-label={ariaLabel}
+      download={download as string | boolean | undefined}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={classes} aria-label={ariaLabel}>
+      <slot />
+    </button>
+  )
+}

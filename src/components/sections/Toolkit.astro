@@ -1,0 +1,176 @@
+---
+/**
+ * Toolkit.astro
+ *
+ * Skills + tools matrix. Two cards side by side on desktop, stacked on
+ * mobile. Left = already fluent, right = learning deeply. A slim languages
+ * row sits below. Source copy in content/07-skills-tools.md. All em-dashes
+ * rewritten per DESIGN.md voice rules.
+ */
+
+import Card from '~/components/ui/Card.astro';
+import Chip from '~/components/ui/Chip.astro';
+
+interface Props {}
+---
+
+<section id="toolkit" class="section toolkit">
+  <div class="container-x">
+    <p class="eyebrow toolkit-eyebrow">toolkit</p>
+    <h2 id="toolkit-h" class="h-section toolkit-heading">
+      What I&apos;m fluent in, and what I&apos;m here to <span class="hl">learn deeply</span>.
+    </h2>
+
+    <div class="toolkit-grid">
+      <Card class="toolkit-card">
+        <h3 id="toolkit-fluent" class="toolkit-card-heading">Already fluent</h3>
+        <ul class="toolkit-list">
+          <li>
+            <strong>Power BI</strong>: 12-KPI dashboards, weekly cadence, 4 years.
+          </li>
+          <li>
+            <strong>Excel</strong>: PivotTables, dynamic arrays, KPI tracking.
+          </li>
+          <li>
+            <strong>PowerPoint</strong>: exec synthesis, one decision per slide.
+          </li>
+          <li>
+            <strong>Multi-market coordination</strong>: 40 countries, weekly cadence.
+          </li>
+          <li>
+            <strong>Cross-functional Agile / JIRA</strong>: finance · ops handoffs.
+          </li>
+          <li>
+            <strong>English (C2)</strong>: operating fluency in international teams.
+          </li>
+        </ul>
+      </Card>
+
+      <Card class="toolkit-card">
+        <h3 id="toolkit-learning" class="toolkit-card-heading">Learning deeply</h3>
+        <ul class="toolkit-list">
+          <li>
+            <strong>Brand strategy</strong>: positioning frameworks, tone of voice.
+          </li>
+          <li>
+            <strong>Consumer insights</strong>: qual interviews, BHT panel work.
+          </li>
+          <li>
+            <strong>Trade marketing</strong>: sell-in / sell-out / category management.
+          </li>
+          <li>
+            <strong>NPD / innovation</strong>: concept testing, R&amp;D-to-shelf handoff.
+          </li>
+          <li>
+            <strong>Performance marketing</strong>: paid media, CRM, lifecycle.
+          </li>
+          <li>
+            <strong>French (B2 going to C1)</strong>: actively levelling up to native business fluency.
+          </li>
+        </ul>
+      </Card>
+    </div>
+
+    <div class="toolkit-langs" aria-labelledby="toolkit-langs-label">
+      <span id="toolkit-langs-label" class="eyebrow toolkit-langs-label">languages</span>
+      <div class="toolkit-langs-row">
+        <Chip>English C2</Chip>
+        <Chip>French B2 &rarr; C1</Chip>
+        <Chip variant="soft">Telugu native</Chip>
+        <Chip variant="soft">Hindi conversational</Chip>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .toolkit {
+    border-top: 1px solid var(--ms-border-subtle);
+  }
+
+  .toolkit-eyebrow {
+    margin-bottom: var(--space-3);
+  }
+
+  .toolkit-heading {
+    margin: 0 0 var(--space-7) 0;
+    color: var(--ms-fg-1);
+    max-width: 28ch;
+  }
+
+  .toolkit-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 768px) {
+    .toolkit-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+    }
+  }
+
+  .toolkit-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .toolkit-card-heading {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--ms-fg-1);
+  }
+
+  .toolkit-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .toolkit-list li {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ms-fg-2);
+    padding-left: var(--space-4);
+    position: relative;
+  }
+
+  .toolkit-list li::before {
+    content: "·";
+    position: absolute;
+    left: 2px;
+    top: -2px;
+    color: var(--ms-fg-3);
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .toolkit-list strong {
+    color: var(--ms-fg-1);
+    font-weight: 500;
+  }
+
+  .toolkit-langs {
+    margin-top: var(--space-7);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .toolkit-langs-label {
+    margin: 0;
+  }
+
+  .toolkit-langs-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+</style>

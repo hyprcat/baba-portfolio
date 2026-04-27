@@ -1,0 +1,273 @@
+---
+/**
+ * Hero.astro
+ *
+ * Top-of-page hero. Carries the page's single <h1>, the availability status
+ * pill, two CTAs, and a pencil doodle as the visual anchor in lieu of a
+ * portrait photo. See content/01-hero.md for the canonical copy.
+ *
+ * Recruiter-first: who, school, available when, what kind of role.
+ * Anything beyond that on first viewport is filler.
+ */
+
+import Button from '~/components/ui/Button.astro';
+import HeroArtwork from '~/components/ui/HeroArtwork.astro';
+
+interface Props {}
+---
+
+<section id="top" class="hero section">
+  <div class="container-x">
+    <div class="hero-status-row">
+      <span class="chip chip-soft hero-status" role="status">
+        <span class="hero-status-dot" aria-hidden="true"></span>
+        Available July 2026 &middot; stage de fin d&apos;études or first CDI
+      </span>
+    </div>
+
+    <div class="hero-copy">
+      <h1 id="hero" class="h-display hero-headline">
+        Marketing &amp; product, with <span class="hl">operations bones</span>.
+      </h1>
+
+      <p class="hero-sub">
+        I help senior leaders walk into Monday already knowing what to act on. Four years getting a 300-person company in Hyderabad to that point, then the central team for a 40-country rollout at Allianz Trade in Paris. ESSEC Grande École, May 2026, GPA 17/20.
+      </p>
+
+      <p class="hero-mono" aria-label="Location, programme, languages">
+        paris &middot; essec mim &middot; en &middot; fr
+      </p>
+
+      <p class="hero-targeting">
+        Brand, product, and insights roles in consumer brands. Food, beauty, and luxury are the priority categories.
+      </p>
+
+      <div class="hero-ctas">
+        <Button
+          href="mailto:babasubhani.syed@essec.edu?subject=Hello%20Baba"
+          variant="primary"
+          class="hero-cta hero-cta-primary"
+        >
+          <span>Get in touch</span>
+          <span class="hero-cta-arrow" aria-hidden="true">→</span>
+        </Button>
+        <Button
+          href="/cv.pdf"
+          variant="secondary"
+          download
+          class="hero-cta"
+        >
+          Download CV
+        </Button>
+      </div>
+
+      <p class="hero-fallback">
+        Prefer LinkedIn?
+        <a
+          href="https://www.linkedin.com/in/babasubhanisyed"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Message Baba Subhani Syed on LinkedIn (opens in a new tab)"
+        >Message me on LinkedIn ↗</a>.
+      </p>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <HeroArtwork size={420} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { position: relative; }
+  /* First section under the navbar — override the symmetric .section padding
+     so the headline sits closer to the top of the viewport. */
+  .hero.section {
+    padding-top: var(--space-6);
+  }
+  .hero-status-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--space-5);
+  }
+  .hero-status { gap: var(--space-2); }
+  .hero-status-dot {
+    background: var(--ms-ok);
+    border-radius: 9999px;
+    width: 8px; height: 8px;
+    display: inline-block;
+  }
+
+  /* Mobile-first: artwork sits above the copy, full width.
+     On desktop the layout becomes a 2-column grid with the artwork on the right. */
+  .hero > .container-x {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .hero-visual :global(svg) {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+  }
+
+  .hero-copy { max-width: 56ch; }
+  .hero-headline { margin: 0; color: var(--ms-fg-1); }
+  .hero-sub {
+    margin: var(--space-4) 0 0;
+    font-size: clamp(18px, 1.6vw, 22px);
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--ms-fg-2);
+  }
+  .hero-mono {
+    margin: var(--space-3) 0 0;
+    font-family: var(--ms-font-mono);
+    font-size: 12px;
+    line-height: 1.4;
+    text-transform: lowercase;
+    letter-spacing: 0.04em;
+    color: var(--ms-fg-3);
+  }
+  .hero-targeting {
+    margin: var(--space-3) 0 0;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--ms-fg-2);
+  }
+  .hero-ctas {
+    margin-top: var(--space-6);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* Hero CTAs sit a half-step larger than default buttons. They are the
+     conversion moment of the page, so they earn the extra weight. */
+  .hero-ctas :global(.hero-cta) {
+    font-size: 15px;
+    padding: 14px 22px;
+    gap: 10px;
+  }
+
+  .hero-ctas :global(.hero-cta-arrow) {
+    display: inline-block;
+    transition: transform var(--t-transform) var(--ease-out);
+    will-change: transform;
+  }
+
+  .hero-ctas :global(.hero-cta-primary:hover .hero-cta-arrow),
+  .hero-ctas :global(.hero-cta-primary:focus-visible .hero-cta-arrow) {
+    transform: translateX(3px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-ctas :global(.hero-cta-arrow) {
+      transition: none;
+    }
+    .hero-ctas :global(.hero-cta-primary:hover .hero-cta-arrow),
+    .hero-ctas :global(.hero-cta-primary:focus-visible .hero-cta-arrow) {
+      transform: none;
+    }
+  }
+
+  .hero-fallback {
+    margin-top: var(--space-4);
+    font-family: var(--ms-font-mono);
+    font-size: 12px;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    color: var(--ms-fg-3);
+    text-transform: lowercase;
+  }
+
+  .hero-fallback a {
+    color: var(--ms-fg-1);
+    border-bottom: 1px solid var(--ms-border-default);
+    padding-bottom: 1px;
+    transition: border-color var(--t-color) var(--ease-out);
+  }
+
+  .hero-fallback a:hover {
+    border-bottom-color: var(--ms-fg-1);
+  }
+
+  /* Tablet: bigger artwork. */
+  @media (min-width: 640px) {
+    .hero-visual :global(svg) {
+      max-width: 400px;
+    }
+  }
+
+  /* Desktop: 2-column grid, artwork to the right of the copy.
+     The status pill lives in the right column above the artwork so the
+     headline can start at the very top-left of the section. Otherwise the
+     pill would span the full row and leave a tall empty gap above the
+     headline on the left. */
+  @media (min-width: 1024px) {
+    .hero > .container-x {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      column-gap: var(--space-8);
+      row-gap: var(--space-4);
+      align-items: start;
+    }
+    .hero-status-row {
+      grid-column: 2;
+      grid-row: 1;
+      margin-bottom: 0;
+      order: 0;
+    }
+    .hero-copy {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      max-width: 60ch;
+      order: 0;
+    }
+    .hero-visual {
+      grid-column: 2;
+      grid-row: 2;
+      justify-content: flex-end;
+      align-self: start;
+      order: 0;
+    }
+    .hero-visual :global(svg) {
+      max-width: 460px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero.section { padding-top: var(--space-5); }
+    .hero > .container-x { gap: var(--space-5); }
+    .hero-status-row {
+      margin-bottom: 0;
+      /* Anchor the pill to the left and let the chip span up to the full
+         row so its long copy can wrap to a second line on narrow phones
+         instead of being clipped at the container edge. */
+      justify-content: flex-start;
+    }
+    .hero-status {
+      max-width: 100%;
+      align-items: flex-start;
+      white-space: normal;
+      text-align: left;
+    }
+    .hero-status-dot {
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+    /* Mobile order: status pill -> copy (so the headline is immediately
+       visible) -> artwork as a supporting visual below. */
+    .hero-status-row { order: 1; }
+    .hero-copy { order: 2; }
+    .hero-visual { order: 3; margin-top: var(--space-2); }
+    .hero-visual :global(svg) { max-width: 260px; }
+  }
+</style>

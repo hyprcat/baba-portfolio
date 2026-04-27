@@ -1,0 +1,109 @@
+---
+// Footer.astro
+// Dark inverse panel with three rows: closing line + CTAs, three-column grid, copyright.
+// Self-sufficient: uses raw HTML with utility classes from src/styles/global.css.
+---
+
+<footer class="footer" aria-label="Site footer">
+  <div class="container-x footer-inner">
+    <div class="footer-row">
+      <span class="footer-name">Baba Subhani Syed</span>
+      <nav class="footer-links" aria-label="Footer links">
+        <a
+          href="mailto:babasubhani.syed@essec.edu?subject=Hello%20Baba"
+          aria-label="Email Baba Subhani Syed"
+        >Email</a>
+        <a
+          href="https://www.linkedin.com/in/babasubhanisyed"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open Baba Subhani Syed's LinkedIn profile (opens in a new tab)"
+        >LinkedIn</a>
+        <a
+          href="/cv.pdf"
+          download
+          aria-label="Download Baba Subhani Syed's CV (PDF)"
+        >CV (PDF)</a>
+      </nav>
+      <span class="mono-tag-on-dark footer-langs" aria-label="Languages: English and French">EN · FR</span>
+    </div>
+
+    <p class="footer-copyright">© 2026 Baba Subhani Syed · Built with care in Paris.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--ms-bg-inverse);
+    color: var(--ms-fg-on-inverse-1);
+    padding-block: var(--space-7);
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .footer-name {
+    font-family: var(--ms-font-mono);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--ms-fg-on-inverse-1);
+    letter-spacing: 0.01em;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer-links a {
+    font-size: 14px;
+    color: var(--ms-fg-on-inverse-1);
+    text-decoration: none;
+    border-bottom: 1px solid var(--ms-border-on-inverse);
+    padding-bottom: 2px;
+    transition: border-color 120ms ease, opacity 120ms ease;
+  }
+
+  .footer-links a:hover {
+    border-bottom-color: currentColor;
+  }
+
+  .footer-links a:focus-visible {
+    outline: 2px solid var(--ms-fg-on-inverse-1);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .footer-langs {
+    flex-shrink: 0;
+  }
+
+  .footer-copyright {
+    font-family: var(--ms-font-mono);
+    font-size: 12px;
+    color: var(--ms-fg-on-inverse-2);
+    border-top: 1px solid var(--ms-border-on-inverse);
+    padding-top: 20px;
+    margin: 0;
+  }
+
+  @media (max-width: 640px) {
+    .footer-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+  }
+</style>

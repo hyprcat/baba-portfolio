@@ -1,0 +1,36 @@
+---
+/**
+ * Card.astro
+ *
+ * Bordered tile primitive. Default tag is `<div>`. Pass `feature` for the
+ * larger padding + radius variant, or `hover` for the lift-on-hover treatment.
+ * The `as` prop allows semantic upgrades to `<article>`, `<section>`, or
+ * `<aside>` when the card carries a real document role.
+ */
+
+interface Props {
+  feature?: boolean;
+  hover?: boolean;
+  as?: 'div' | 'article' | 'section' | 'aside';
+  class?: string;
+}
+
+const {
+  feature = false,
+  hover = false,
+  as: Tag = 'div',
+  class: className,
+} = Astro.props;
+
+const classes = [
+  feature ? 'card-feature' : 'card',
+  hover ? 'card-hover' : null,
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<Tag class={classes}>
+  <slot />
+</Tag>

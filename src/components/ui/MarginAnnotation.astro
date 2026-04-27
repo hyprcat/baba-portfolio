@@ -1,0 +1,60 @@
+---
+/**
+ * MarginAnnotation.astro
+ *
+ * Hand-drawn editorial aside. A short squiggly arrow plus a slot of
+ * marker-pen-style text, like a copyeditor's margin note. The arrow points
+ * from `position` toward the slot text: a right-positioned arrow points
+ * left (toward text on its left), a left-positioned arrow points right.
+ *
+ * Stroke conventions per DESIGN.md section 8.
+ */
+
+interface Props {
+  position?: 'left' | 'right';
+  class?: string;
+}
+
+const { position = 'right', class: className } = Astro.props;
+
+const wrapperClass = [
+  'inline-flex items-center gap-2 align-middle',
+  position === 'left' ? 'flex-row' : 'flex-row-reverse',
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+
+// Arrow base path points right (from a left-side position toward the text).
+// When position === 'right', mirror via CSS transform so a single SVG covers both.
+const arrowTransform = position === 'right' ? 'scaleX(-1)' : undefined;
+---
+
+<span class={wrapperClass}>
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 72 28"
+    style={arrowTransform ? `transform: ${arrowTransform};` : undefined}
+    width="68"
+    height="26"
+    stroke="#111"
+    stroke-width="1.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  >
+    {/* Wavy shaft. Slight asymmetry so it reads hand-drawn. */}
+    <path d="M3.4 14.2 C 12.7 6.8, 22.3 21.6, 32.1 13.4 C 41.6 6.1, 51.8 20.7, 62.3 13.6" />
+    {/* Arrowhead, angled and not perfectly symmetrical. */}
+    <path d="M62.3 13.6 L 55.9 8.7" />
+    <path d="M62.3 13.6 L 56.4 19.1" />
+    {/* Tiny extra tick for hand-drawn texture. */}
+    <path d="M48.7 4.2 L 50.1 6.8" />
+  </svg>
+  <span
+    class="font-display italic text-[14px] leading-snug"
+    style="font-family: var(--ms-font-display); color: var(--ms-fg-2);"
+  >
+    <slot />
+  </span>
+</span>

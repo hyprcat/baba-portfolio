@@ -1,0 +1,63 @@
+---
+/**
+ * BaseLayout.astro
+ *
+ * The root document shell. Owns <html>, <head>, font loading, and the global
+ * stylesheet pipeline. Pages or higher-level layouts (PageLayout) slot their
+ * content into the body.
+ *
+ * Server-rendered, zero client-side JS, single light theme. No theme toggle,
+ * no IntersectionObserver, no inline scripts.
+ */
+
+import SEOHead from '~/components/global/SEOHead.astro';
+import '~/styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  lang?: string;
+  extraSchemas?: object[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  noindex,
+  lang = 'en',
+  extraSchemas,
+} = Astro.props;
+---
+<!DOCTYPE html><html lang={lang}>
+  <head>
+    <SEOHead
+      title={title}
+      description={description}
+      canonical={canonical}
+      ogImage={ogImage}
+      noindex={noindex}
+      extraSchemas={extraSchemas}
+    />
+
+    {/* Self-hosted woff2 fonts. @font-face declarations live in global.css.
+        Preload only the body font (Google Sans Flex latin) — the LCP element
+        on this page is the hero headline, which uses it. The rest are
+        swap-loaded on demand. */}
+    <link
+      rel="preload"
+      href="/fonts/google-sans-flex.latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+  </head>
+  <body class="bg-canvas text-fg-1 antialiased">
+    <a href="#main" class="skip-link">Skip to content</a>
+    <slot />
+  </body>
+</html>

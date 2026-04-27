@@ -1,0 +1,157 @@
+---
+/**
+ * Contact.astro
+ *
+ * Quiet closing CTA. Single recruiter-brain headline that references the
+ * case studies above, three short clauses of body, three buttons. The
+ * dark Footer carries the "Available July 2026" line so we do not repeat
+ * it here. No LightningDoodle, no availability pill, no lime accent.
+ */
+
+import Button from '~/components/ui/Button.astro';
+import LightningDoodle from '~/components/ui/LightningDoodle.astro';
+
+interface Props {}
+---
+
+<section id="contact" class="section contact">
+  <div class="container-x contact-inner">
+    <div class="contact-content">
+      <p class="eyebrow">let&apos;s talk</p>
+      <h2 class="h-section" id="contact-h">
+        If you are hiring for brand, product, or insights in a consumer business, I would love to hear from you.
+      </h2>
+      <p class="contact-body">
+        Email gets to me fastest. LinkedIn works too. The CV is up to date if you want a longer read first.
+      </p>
+      <div class="contact-cta-row">
+        <Button
+          href="mailto:babasubhani.syed@essec.edu?subject=Hello%20Baba"
+          variant="primary"
+          class="contact-cta"
+        >
+          Email Baba
+        </Button>
+        <Button
+          href="https://www.linkedin.com/in/babasubhanisyed"
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="secondary"
+          class="contact-cta"
+          ariaLabel="Open Baba Subhani Syed's LinkedIn profile (opens in a new tab)"
+        >
+          LinkedIn
+        </Button>
+        <Button href="/cv.pdf" variant="ghost" download class="contact-cta">
+          Download CV
+        </Button>
+      </div>
+    </div>
+
+    <div class="contact-doodle" aria-hidden="true">
+      <LightningDoodle size={140} float={true} />
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Mobile-first. Sizes here apply at every viewport unless overridden below. */
+  .contact {
+    padding-block: var(--space-7);
+    border-top: 1px solid var(--ms-border-subtle);
+  }
+
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  .contact-content {
+    max-width: 56ch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .contact-content > .eyebrow,
+  .contact-content > h2 {
+    margin: 0;
+  }
+
+  .contact-body {
+    margin: 0;
+    color: var(--ms-fg-2);
+    font-size: 17px;
+    line-height: 1.55;
+    max-width: 52ch;
+  }
+
+  /* CTAs stack full-width by default so the three buttons read as a clear
+     vertical list on any narrow viewport — no awkward 2+1 wrap. */
+  .contact-cta-row {
+    margin-top: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-3);
+  }
+
+  .contact-cta-row :global(.contact-cta) {
+    font-size: 15px;
+    padding: 14px 20px;
+    width: 100%;
+  }
+
+  /* Doodle is decorative — hidden on mobile to keep the closing moment tight.
+     Re-enabled at the desktop breakpoint where it gets a column of its own. */
+  .contact-doodle {
+    display: none;
+  }
+
+  /* Tablet and up: more breathing room, headline has the 24ch cap back so
+     it breaks where it should, body text scales up a touch. */
+  @media (min-width: 640px) {
+    .contact {
+      padding-block: var(--space-8);
+    }
+    .contact-content {
+      gap: var(--space-4);
+    }
+    .contact-content > h2 {
+      max-width: 24ch;
+    }
+    .contact-body {
+      font-size: 18px;
+    }
+    .contact-cta-row {
+      margin-top: var(--space-4);
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-4);
+    }
+    .contact-cta-row :global(.contact-cta) {
+      width: auto;
+      padding: 12px 20px;
+    }
+  }
+
+  /* Desktop: full vertical padding, 2-column layout with the doodle in
+     its own column on the right, vertically centered with the content. */
+  @media (min-width: 1024px) {
+    .contact {
+      padding-block: var(--space-9);
+    }
+    .contact-inner {
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.6fr);
+      gap: var(--space-8);
+    }
+    .contact-doodle {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+</style>

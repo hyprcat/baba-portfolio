@@ -1,0 +1,240 @@
+---
+/**
+ * CVSummary.astro
+ *
+ * Compact CV block. Five subsections rendered as definition lists for ATS
+ * readability: education, work, leadership, languages, toolkit, plus an
+ * availability and targets block. Source copy in content/09-cv-summary.md.
+ * All em-dashes rewritten per DESIGN.md voice rules. No .hl on this section
+ * by design (the case studies own the lime accent).
+ */
+
+import Button from '~/components/ui/Button.astro';
+import Chip from '~/components/ui/Chip.astro';
+
+interface Props {}
+---
+
+<section id="cv" class="section section-tight cv-summary">
+  <div class="container-x">
+    <p class="eyebrow cv-eyebrow">cv summary</p>
+    <h2 id="cv-h" class="h-section cv-heading">The short version.</h2>
+
+    <div class="cv-blocks">
+      <div class="cv-block">
+        <h3 id="cv-education" class="cv-block-heading">Education</h3>
+        <dl class="cv-dl">
+          <dt>
+            <strong>ESSEC Business School</strong>, Paris &middot; Aug 2024 to May 2026
+          </dt>
+          <dd>
+            Master in Management, Grande École (BAC+5). GPA 17/20. Member of the Food Business Challenges Chair.
+          </dd>
+          <dt>
+            <strong>Osmania University</strong>, Hyderabad &middot; Jun 2016 to Jun 2019
+          </dt>
+          <dd>
+            Bachelor of Arts, Public Administration. GPA 9.47/10. Ranked 1st of 300.
+          </dd>
+        </dl>
+      </div>
+
+      <div class="cv-block">
+        <h3 id="cv-work" class="cv-block-heading">Work experience</h3>
+        <dl class="cv-dl">
+          <dt>
+            <strong>Allianz Trade</strong>, Paris &middot; Junior Project Manager, Insurance &middot; Sept 2025 to Dec 2025
+          </dt>
+          <dd>
+            Coordinated international activation across 40 countries (Europe, MESA). Built advanced Excel dashboards consolidating multi-country performance data. Prepared executive synthesis decks for C-level reporting. Liaised with HR partners across the network in English.
+          </dd>
+          <dt>
+            <strong>Srikanth Engineering Works</strong>, Hyderabad &middot; Project Manager, Agri-Tech (300 employees) &middot; Jun 2019 to Sept 2023
+          </dt>
+          <dd>
+            Designed a 12-KPI Power BI dashboard tracking output velocity, capacity utilisation, and performance gaps across 5 business units, reviewed weekly by senior management. Cut bottlenecks by 47% within three months. Compressed delivery cycles by 28% and improved operational efficiency by 35%. Analysed end-to-end funnel data across the 300-person organisation, lifting process outcomes by 30%. Zero missed deadlines over 18 months of weekly senior reporting.
+          </dd>
+          <dt>
+            <strong>IMPACT Consulting</strong>, Hyderabad &middot; Project Support Intern, Marketing &amp; Brand Strategy &middot; Sept 2023 to Mar 2024
+          </dt>
+          <dd>
+            Supported brand-strategy projects across 5 client business units in a client-facing consultancy. Exposure to consumer positioning, campaign planning, and brand communication. Built Power BI recruitment-analytics dashboards monitoring funnel performance and conversion metrics. Reduced reporting time by 40%.
+          </dd>
+        </dl>
+      </div>
+
+      <div class="cv-block">
+        <h3 id="cv-leadership" class="cv-block-heading">Leadership</h3>
+        <dl class="cv-dl">
+          <dt>
+            <strong>Vasavya Mahila Mandali NGO</strong> &middot; Community Programme Lead
+          </dt>
+          <dd>
+            Designed and delivered entrepreneurship and financial-literacy programmes for 150 beneficiaries, achieving 70% long-term participation.
+          </dd>
+        </dl>
+      </div>
+
+      <div class="cv-block">
+        <h3 id="cv-languages" class="cv-block-heading">Languages</h3>
+        <div class="cv-langs-row">
+          <Chip>English (C2)</Chip>
+          <Chip>French (B2 going to C1)</Chip>
+          <Chip variant="soft">Telugu (native)</Chip>
+          <Chip variant="soft">Hindi (conversational)</Chip>
+        </div>
+      </div>
+
+      <div class="cv-block">
+        <h3 id="cv-toolkit" class="cv-block-heading">Toolkit</h3>
+        <dl class="cv-dl">
+          <dt><strong>Data &amp; reporting</strong></dt>
+          <dd>
+            Power BI, Excel (advanced PivotTables, dynamic arrays), KPI design, performance reporting.
+          </dd>
+          <dt><strong>Operations &amp; analysis</strong></dt>
+          <dd>
+            Operational benchmarking, process improvement, funnel and bottleneck analysis, cross-functional action planning.
+          </dd>
+          <dt><strong>Structuring &amp; communication</strong></dt>
+          <dd>
+            PowerPoint synthesis decks, executive summaries, governance-body support, multi-stakeholder coordination.
+          </dd>
+          <dt><strong>Project management</strong></dt>
+          <dd>Agile, JIRA, prioritisation under pressure.</dd>
+        </dl>
+      </div>
+
+      <div class="cv-block">
+        <h3 id="cv-availability" class="cv-block-heading">Availability and targets</h3>
+        <ul class="cv-bullets">
+          <li>
+            May or July 2026 for stage de fin d&apos;études (4 to 6 months) or first CDI starting summer 2026.
+          </li>
+          <li>Paris-based, on-site preferred, open to hybrid.</li>
+          <li>French student visa, eligible for convention de stage.</li>
+          <li>
+            Targets: marketing, product, brand, insights, commercial strategy. Primarily food, culinary, CPG, FMCG, beverages, spirits, premium, fine food, restaurant tech. Full-fit eligibility for beauty, personal-care FMCG, fashion, luxury, and Consumer-practice strategy consulting.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cv-actions">
+      <Button href="/cv.pdf" variant="secondary" download>
+        Download the full CV
+      </Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cv-summary {
+    border-top: 1px solid var(--ms-border-subtle);
+  }
+
+  .cv-eyebrow {
+    margin-bottom: var(--space-3);
+  }
+
+  .cv-heading {
+    margin: 0 0 var(--space-7) 0;
+    color: var(--ms-fg-1);
+    max-width: 24ch;
+  }
+
+  .cv-blocks {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+
+  @media (min-width: 768px) {
+    .cv-blocks {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-7) var(--space-8);
+    }
+  }
+
+  .cv-block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .cv-block-heading {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--ms-fg-3);
+  }
+
+  .cv-dl {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .cv-dl dt {
+    font-size: 15px;
+    line-height: 1.45;
+    color: var(--ms-fg-1);
+  }
+
+  .cv-dl dt strong {
+    font-weight: 500;
+  }
+
+  .cv-dl dd {
+    margin: 4px 0 0 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ms-fg-2);
+  }
+
+  .cv-dl dd + dt {
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: 1px dashed var(--ms-border-subtle);
+  }
+
+  .cv-bullets {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .cv-bullets li {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ms-fg-2);
+    padding-left: var(--space-4);
+    position: relative;
+  }
+
+  .cv-bullets li::before {
+    content: "·";
+    position: absolute;
+    left: 2px;
+    top: -2px;
+    color: var(--ms-fg-3);
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  .cv-langs-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .cv-actions {
+    margin-top: var(--space-7);
+  }
+</style>

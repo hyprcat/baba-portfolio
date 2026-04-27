@@ -1,0 +1,59 @@
+---
+/**
+ * PencilDoodle.astro
+ *
+ * Hand-drawn tilted pencil. Body, ferrule band, sharpened tip, plus a tiny
+ * scribble near the point so it reads as "writing in progress". Slight
+ * asymmetry across every path, no perfectly even rectangles.
+ *
+ * Caller controls width via the `size` prop. Height tracks the viewBox.
+ */
+
+interface Props {
+  size?: number;
+  float?: boolean;
+  class?: string;
+}
+
+const { size = 180, float = false, class: className } = Astro.props;
+
+const classes = [float ? 'doodle-float' : null, className]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<svg
+  aria-hidden="true"
+  viewBox="0 0 220 96"
+  width={size}
+  class={classes || undefined}
+  stroke="#111"
+  stroke-width="1.6"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  fill="none"
+>
+  {/* Pencil body, tilted. Two long edges + the rounded eraser end. */}
+  <path d="M18.4 41.7 L 152.6 18.3" />
+  <path d="M22.8 60.2 L 156.9 36.8" />
+  {/* Eraser end cap. Slight squish, not a perfect arc. */}
+  <path d="M18.4 41.7 C 14.2 44.1, 13.7 57.4, 22.8 60.2" />
+  {/* Ferrule band. Two thin rings near the eraser. */}
+  <path d="M37.8 38.6 L 41.4 57.1" />
+  <path d="M48.3 36.7 L 51.9 55.3" />
+  {/* Wood shoulder where the body narrows toward the tip. */}
+  <path d="M152.6 18.3 L 178.4 33.2" />
+  <path d="M156.9 36.8 L 178.1 47.6" />
+  {/* Sharpened cone, line-only, with a darker filled point for accent. */}
+  <path d="M178.4 33.2 L 201.7 39.4 L 178.1 47.6" />
+  <path
+    d="M196.3 38.1 L 201.7 39.4 L 197.2 42.8 Z"
+    fill="#111"
+    stroke="none"
+  />
+  {/* Tiny scribbles near the tip, implies writing. */}
+  <path d="M188.4 58.7 C 192.1 61.3, 196.8 59.4, 199.6 62.1" />
+  <path d="M183.2 67.4 C 186.7 69.1, 191.3 67.8, 193.8 70.2" />
+  {/* One stray confidence stroke along the body for hand-drawn texture. */}
+  <path d="M73.1 47.4 L 118.6 39.2" />
+</svg>

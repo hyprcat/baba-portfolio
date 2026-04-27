@@ -1,0 +1,110 @@
+---
+/**
+ * SEOHead.astro
+ *
+ * Renders all <head> meta tags, Open Graph + Twitter cards, favicons, theme
+ * color, and JSON-LD structured data. Font loading and the global stylesheet
+ * live in BaseLayout, not here, so this component stays focused on metadata.
+ *
+ * Usage from BaseLayout:
+ *   <SEOHead title={...} description={...} canonical={...} ogImage={...} />
+ */
+
+import {
+  SITE_URL,
+  SITE_NAME,
+  DEFAULT_TITLE,
+  DEFAULT_DESCRIPTION,
+  DEFAULT_OG_IMAGE,
+  LOCALE,
+  personSchema,
+} from '~/utils/seo';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  noindex?: boolean;
+  extraSchemas?: object[];
+}
+
+const {
+  title,
+  description = DEFAULT_DESCRIPTION,
+  canonical,
+  ogImage = DEFAULT_OG_IMAGE,
+  noindex = false,
+  extraSchemas = [],
+} = Astro.props;
+
+// Resolved page title. If the caller already includes the site name, leave it
+// alone. Otherwise append the site name with a middot separator.
+const resolvedTitle = title
+  ? title.includes(SITE_NAME)
+    ? title
+    : `${title} · ${SITE_NAME}`
+  : DEFAULT_TITLE;
+
+// Canonical URL. Default to the request's pathname resolved against SITE_URL.
+const canonicalPath = canonical ?? Astro.url.pathname;
+const canonicalUrl = new URL(canonicalPath, SITE_URL).toString();
+
+// OG image must be absolute. Pass-through if already absolute, otherwise
+// resolve against SITE_URL.
+const ogImageUrl = ogImage.startsWith('http')
+  ? ogImage
+  : new URL(ogImage, SITE_URL).toString();
+
+const schemas: object[] = [personSchema(), ...extraSchemas];
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+<title>{resolvedTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+{/* Open Graph */}
+<meta property="og:title" content={resolvedTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="profile" />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:locale" content={LOCALE} />
+<meta property="og:site_name" content={SITE_NAME} />
+
+{/* Profile-specific OG */}
+<meta property="profile:first_name" content="Baba Subhani" />
+<meta property="profile:last_name" content="Syed" />
+
+{/* Twitter / X card */}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={resolvedTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+
+{/* Theme color (matches canvas surface in DESIGN.md) */}
+<meta name="theme-color" content="#FFFFFF" />
+
+{/*
+  Favicon and PWA icon set.
+  Files referenced here do not exist in /public yet. Generate the full set
+  from a "BS" monogram via realfavicongenerator.net per content/00-meta.md
+  and drop them into /public before launch.
+*/}
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+
+{/* JSON-LD structured data. Person schema first, then any extra schemas. */}
+{
+  schemas.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))
+}
